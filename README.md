@@ -105,13 +105,9 @@ when i used it.
 
 Distribution :
 
-This product is distributed by MBCRAFT di Marco Bagnaresi.
+I hope you find this library useful. The library is now open source since
+i was not able to sell some licences for some bucks.
 
-
-
-I hope you find this library useful.
-
-Kind regards
 
 -Marco
 
