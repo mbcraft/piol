@@ -89,7 +89,7 @@ with your favorite browser.
 
 ## Info :
 
-Current version : 1.8.4
+Current version : 2.0.0
 
 ## Latest changes :
 
