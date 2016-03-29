@@ -12,15 +12,25 @@ This package contains :
 
 
 docs/               <-- API documentation
+
 src/                <-- full documented source code
+
 test/               <-- unit test classes and data
+
 vendor/             <-- empty but ready for composer packages (used for running unit tests)
+
 LICENSE             <-- your usage license :)
+
 README.md           <-- instructions and description of whole package
+
 composer.json       <-- composer configuration
+
 composer.phar       <-- instance of composer
+
 config_tests.php    <-- configuration file needed for command line test runner
+
 run_tests.sh        <-- test runner for linux/unix
+
 run_tests.php       <-- web test runner
 
 
