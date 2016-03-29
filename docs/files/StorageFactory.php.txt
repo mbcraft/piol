@@ -1,0 +1,240 @@
+<?php
+
+/**
+ * This file contains the StorageFactory class.
+ */
+namespace Mbcraft\Piol {
+    
+    /**
+     * This class is a factory for obtaining Storage subclasses and managing secure protected
+     * storage. The protected storage is a secure folder (where secure means it has a random name
+     * and can't be guessed on the web) that contains all storage data. Actually it uses a 2 level
+     * categorization strategy for saving all storage files. By default the storage root is in the '/include/storage/'
+     * folder. It is possible to configure the storage root using the methods :
+     * - getStorageRoot()
+     * - setStorageRoot()
+     * - storageRootExists()
+     * 
+     * A storage is identified by two keys + its type. Actually they are called 'folder' and 'name'.
+     * 
+     * Actually 3 types of storage are implemented :
+     * 
+     * - PropertiesStorage : stores properties file
+     * - XMLStorage : stores xml data
+     * - DataStorage : stores string data
+     * 
+     * Each kind of storage has its own methods for dealing with data.
+     */
+    class StorageFactory extends PiolObject {
+        /**
+         * Default storage root path is "/include/storage/".
+         */
+        const DEFAULT_STORAGE_ROOT = "/include/storage/";
+        /**
+         * 
+         * Default valid folder and storage name pattern.
+         * 
+         * @internal
+         */
+        const VALID_FOLDER_AND_STORAGE_NAME_PATTERN = "/^[0-9_a-z\-\.]+$/i";
+        /**
+         * Constant for properties storage. Also used as file extension internally.
+         */
+        const PROPERTIES_STORAGE = "ini";
+        /**
+         * Constant for xml storage. Also used as file extension internally.
+         */
+        const XML_STORAGE = "xml";
+        /**
+         * Constanf for data storage. Also used as file extension internally.
+         */
+        const DATA_STORAGE = "dat";
+        /**
+         * 
+         * @var string Contains the default storage root path. 
+         * 
+         * @internal
+         */
+        private static $storage_root = self::DEFAULT_STORAGE_ROOT;
+
+        /**
+         * 
+         * Gets all the storages found in the specified folder, relative to the storage root.
+         * 
+         * @param string $folder the folder name
+         * @return array an array of storages instances.
+         * 
+         * @api
+         */
+        public static function getAll($folder) {
+            $real_storage_dir = self::getProtectedStorage();
+
+            $result = array();
+
+            $folder_dir = new Dir($real_storage_dir->getPath() . $folder . DS);
+            if (!$folder_dir->exists())
+                $real_storage_dir->newSubdir($folder);
+
+            $results = $folder_dir->listElements();
+            $all_storages_files = array_merge($results[0],$results[1]);
+            foreach ($all_storages_files as $f) {
+                if ($f->isFile())
+                    $result[] = self::getByExtension($folder, $f->getName(), $f->getLastExtension());
+            }
+            return $result;
+        }
+
+        /**
+         * 
+         * Deletes all the storage data.
+         * 
+         * @api
+         */
+        public static function clean() {
+            $real_storage_dir = self::getProtectedStorage();
+            $real_storage_dir->delete();
+        }
+        
+        /**
+         * 
+         * Returns the verified storage folder. If it does not exists, it is created.
+         * 
+         * @return \Mbcraft\Piol\Dir the directory, as a \Mbcraft\Piol\Dir instance, pointing to the verified storage.
+         * @throws \Mbcraft\Piol\IOException if the storage root does not exists or is not valid.
+         * 
+         * @api
+         */
+        public static function getProtectedStorage() {
+            $protected_storage_dir = new Dir(self::$storage_root);
+            if (!$protected_storage_dir->exists())
+                throw new IOException("The storage folder does not exist : " . self::$storage_root);
+            if (!$protected_storage_dir->isWritable())
+                throw new IOException("The storage folder is not readable and writable : " . self::$storage_root);
+
+            
+            $results = $protected_storage_dir->listElements();
+            if (count($results[0])==0 && count($results[1]) <= 1) { 
+                if ($protected_storage_dir->isEmpty()) {
+                    $protected_storage_dir->newRandomSubdir();
+                }
+                return $protected_storage_dir->getUniqueSubdir();
+            } else {
+                throw new IOException("The storage root folder is invalid : it must contain at most just one folder.");
+            }
+        }
+        
+        /**
+         * 
+         * Checks if the storage root exists.
+         * 
+         * @return boolean true if the storage root exists, false otherwise.
+         * 
+         * @api
+         */
+        public static function storageRootExists() {
+            $d = new Dir(self::$storage_root);
+            return $d->exists();
+        }
+
+        /**
+         * 
+         * Returns the default storage root.
+         * 
+         * @return string the path of the default storage root.
+         * 
+         * @api
+         */
+        public static function getDefaultStorageRoot() {
+            return self::DEFAULT_STORAGE_ROOT;
+        }
+
+        /**
+         * 
+         * Returns the path of the current storage root, as string.
+         * 
+         * @return string the path of the current storage root.
+         * 
+         * @api
+         */
+        public static function getStorageRoot() {
+            return self::$storage_root;
+        }
+        /**
+         * 
+         * Sets the storage root using the specified string path.
+         * 
+         * @param string $new_root the new path for the storage root
+         * 
+         * @api
+         */
+        public static function setStorageRoot($new_root) {
+            self::$storage_root = $new_root;
+        }
+
+        /**
+         * 
+         * Returns a storage using its extension as instance selector.
+         * 
+         * @param type $folder folder of the storage, relative to the storage root, as string name.
+         * @param type $name name of the file, relative to the storage folder, as string name (without extension).
+         * @param type $extension the extension of the file, used to select the correct storage instance.
+         * @return \Mbcraft\Piol\Storage\PropertiesStorage|\Mbcraft\Piol\Storage\DataStorage|\Mbcraft\Piol\Storage\XMLStorage
+         * @throws \Mbcraft\Piol\IOException
+         * 
+         * @api
+         */
+        public static function getByExtension($folder, $name, $extension) {
+
+            switch ($extension) {
+                case self::DATA_STORAGE : return new StorageDrivers\DataStorage($folder, $name);
+                case self::PROPERTIES_STORAGE : return new StorageDrivers\PropertiesStorage($folder, $name);
+                case self::XML_STORAGE : return new StorageDrivers\XMLStorage($folder, $name);
+                default : throw new IOException("Estensione di storage non supportata!");
+            }
+        }
+
+        /**
+         * 
+         * Returns the DataStorage identified by the 'folder' and 'name' parameters.
+         * 
+         * @param string $folder folder of the storage, relative to the storage root, as string name.
+         * @param string $name name of the file, relative to the storage folder, as string name (without extension).
+         * @return \Mbcraft\Piol\Storage\DataStorage the DataStorage instance.
+         * 
+         * @api
+         */
+        public static function getDataStorage($folder, $name) {
+            return new StorageDrivers\DataStorage($folder, $name, self::DATA_STORAGE);
+        }
+
+        /**
+         * 
+         * Returns the PropertiesStorage identified by the 'folder' and 'name' parameters.
+         * 
+         * @param string $folder folder of the storage, relative to the storage root, as string name.
+         * @param string $name name of the folder, relative to the storage folder, as string name (without extension).
+         * @return \Mbcraft\Piol\Storage\PropertiesStorage the PropertiesStorage instance.
+         * 
+         * @api
+         */
+        public static function getPropertiesStorage($folder, $name) {
+            return new StorageDrivers\PropertiesStorage($folder, $name, self::PROPERTIES_STORAGE);
+        }
+
+        /**
+         * 
+         * Returns the XMLStorage identified by the 'folder' and 'name' parameters.
+         * 
+         * @param string $folder folder of the storage, relative to the storage root, as string name.
+         * @param string $name name of the storage, relative to the storage folder, as string name (without extension).
+         * @return \Mbcraft\Piol\Storage\XMLStorage the XMLStorage instance.
+         * 
+         * @api
+         */
+        public static function getXMLStorage($folder, $name) {
+            return new StorageDrivers\XMLStorage($folder, $name, self::XML_STORAGE);
+        }
+    }
+    
+}
+

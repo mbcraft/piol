@@ -1,0 +1,3087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Mbcraft.html">\Mbcraft</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1732772418"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1732772418" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1894382412"></a>
+                                <a href="../namespaces/Mbcraft.html" style="margin-left: 30px; padding-left: 0">Mbcraft</a>
+            </div>
+            <div id="namespace-1894382412" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1846272905"></a>
+                                <a href="../namespaces/Mbcraft.Piol.html" style="margin-left: 30px; padding-left: 0">Piol</a>
+            </div>
+            <div id="namespace-1846272905" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-170792451"></a>
+                                <a href="../namespaces/Mbcraft.Piol.Cache.html" style="margin-left: 30px; padding-left: 0">Cache</a>
+            </div>
+            <div id="namespace-170792451" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Mbcraft.Piol.Cache.ICache.html">ICache</a></li>
+                                                                                                    <li class="class"><a href="../classes/Mbcraft.Piol.Cache.FlatDirCache.html">FlatDirCache</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-794023766"></a>
+                                <a href="../namespaces/Mbcraft.Piol.StorageDrivers.html" style="margin-left: 30px; padding-left: 0">StorageDrivers</a>
+            </div>
+            <div id="namespace-794023766" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Mbcraft.Piol.StorageDrivers.DataStorage.html">DataStorage</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.StorageDrivers.PropertiesStorage.html">PropertiesStorage</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.StorageDrivers.XMLStorage.html">XMLStorage</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1904699004"></a>
+                                <a href="../namespaces/Mbcraft.Piol.Utils.html" style="margin-left: 30px; padding-left: 0">Utils</a>
+            </div>
+            <div id="namespace-1904699004" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Mbcraft.Piol.Utils.IniPropertiesUtils.html">IniPropertiesUtils</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.Utils.JavaXmlPropertiesUtils.html">JavaXmlPropertiesUtils</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Mbcraft.Piol.__FileSystemElement.html">__FileSystemElement</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.Dir.html">Dir</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.File.html">File</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.FileReader.html">FileReader</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.FileSystemUtils.html">FileSystemUtils</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.FileWriter.html">FileWriter</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.IOException.html">IOException</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.PiolObject.html">PiolObject</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.Storage.html">Storage</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.StorageFactory.html">StorageFactory</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.Upload.html">Upload</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.UploadUtils.html">UploadUtils</a></li>
+                                                    <li class="class"><a href="../classes/Mbcraft.Piol.ZipUtils.html">ZipUtils</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Mbcraft.Piol.html">\Mbcraft\Piol</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Mbcraft\Piol</small>Dir</h1>
+                    <p><em>This class enable you to easily work with directories. It contains a lot of easy to use methods
+for dealing with directories and its content (file listing) as well as methods for copying, moving
+and deleting content, as well as methods for checking parent and ancestor dirs.</em></p>
+                    <p>It also has methods for automatically work with file system elements storage related data.</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_toOctalPermissions" class="">toOctalPermissions()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_toRwxPermissions" class="">toRwxPermissions()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_setDefaultPermissionsOctal" class="">setDefaultPermissionsOctal()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_getDefaultPermissionsOctal" class="">getDefaultPermissionsOctal()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_setDefaultPermissionsRwx" class="">setDefaultPermissionsRwx()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_getDefaultPermissionsRwx" class="">getDefaultPermissionsRwx()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_equals" class="">equals()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_isChildOf" class="">isChildOf()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_isDir" class="">isDir()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_isFile" class="">isFile()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_exists" class="">exists()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_getLastAccessTime" class="">getLastAccessTime()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_getModificationTime" class="">getModificationTime()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_rename" class="">rename()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_moveTo" class="">moveTo()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_copy" class="">copy()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_getFullPath" class="">getFullPath()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_getPath" class="">getPath()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_hasAttachedStorage" class="">hasAttachedStorage()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_deleteAttachedStorage" class="">deleteAttachedStorage()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_getAttachedStorage" class="">getAttachedStorage()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method___toString" class="">__toString()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_isReadable" class="">isReadable()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_isWritable" class="">isWritable()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_toRelativePath" class="">toRelativePath()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_getFullName" class="">getFullName()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_getName" class="">getName()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_getInfo" class="">getInfo()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_isEmpty" class="">isEmpty()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.__FileSystemElement.html#method_getParentDir" class="">getParentDir()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.PiolObject.html#method___call" class="">__call()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.PiolObject.html#method___callStatic" class="">__callStatic()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_asDir" class="">asDir()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_visit" class="">visit()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_getLevel" class="">getLevel()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_touch" class="">touch()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_isAncestorOrSame" class="">isAncestorOrSame()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_newRandomSubdir" class="">newRandomSubdir()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_newSubdir" class="">newSubdir()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_listFiles" class="">listFiles()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_listFolders" class="">listFolders()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_listElements" class="">listElements()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_findElementsStartingWith" class="">findElementsStartingWith()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_findElementsEndingWith" class="">findElementsEndingWith()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_findMatchingElements" class="">findMatchingElements()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_newDir" class="">newDir()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_newFile" class="">newFile()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_hasOnlyOneSubdir" class="">hasOnlyOneSubdir()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_randomRename" class="">randomRename()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_getUniqueSubdir" class="">getUniqueSubdir()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_hasSubdirs" class="">hasSubdirs()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_isParentOf" class="">isParentOf()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_setPermissions" class="">setPermissions()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_hasPermissions" class="">hasPermissions()</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#method_getPermissions" class="">getPermissions()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#constant_DEFAULT_EXCLUDES" class="">DEFAULT_EXCLUDES</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#constant_NO_HIDDEN_FILES" class="">NO_HIDDEN_FILES</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#constant_SHOW_HIDDEN_FILES" class="">SHOW_HIDDEN_FILES</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#constant_MODE_FILES_ONLY" class="">MODE_FILES_ONLY</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#constant_MODE_FOLDERS_ONLY" class="">MODE_FOLDERS_ONLY</a><br />
+                                                                    <a href="../classes/Mbcraft.Piol.Dir.html#constant_MODE_FILES_AND_FOLDERS" class="">MODE_FILES_AND_FOLDERS</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Dir.html"><div class="path-wrapper">Dir.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                        <div class="namespace-wrapper"><a href="../classes/Mbcraft.Piol.PiolObject.html">\Mbcraft\Piol\PiolObject</a></div>
+                                                                    
+                                        <div class="namespace-wrapper"><a href="../classes/Mbcraft.Piol.__FileSystemElement.html">\Mbcraft\Piol\__FileSystemElement</a></div>
+                                                                                                    <div class="namespace-wrapper">\Mbcraft\Piol\Dir</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_EXCLUDES" name="constant_DEFAULT_EXCLUDES" class="anchor"></a>
+            <article id="constant_DEFAULT_EXCLUDES" class="constant">
+                <h3 class="">DEFAULT_EXCLUDES</h3>
+                <pre class="signature">DEFAULT_EXCLUDES</pre>
+                <p><em>Default exclude mode for list methods is &quot;no hidden files&quot;.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NO_HIDDEN_FILES" name="constant_NO_HIDDEN_FILES" class="anchor"></a>
+            <article id="constant_NO_HIDDEN_FILES" class="constant">
+                <h3 class="">NO_HIDDEN_FILES</h3>
+                <pre class="signature">NO_HIDDEN_FILES</pre>
+                <p><em>Mode for excluding hidden files for list methods.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SHOW_HIDDEN_FILES" name="constant_SHOW_HIDDEN_FILES" class="anchor"></a>
+            <article id="constant_SHOW_HIDDEN_FILES" class="constant">
+                <h3 class="">SHOW_HIDDEN_FILES</h3>
+                <pre class="signature">SHOW_HIDDEN_FILES</pre>
+                <p><em>Mode for showing hidden files for list methods.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MODE_FILES_ONLY" name="constant_MODE_FILES_ONLY" class="anchor"></a>
+            <article id="constant_MODE_FILES_ONLY" class="constant">
+                <h3 class="">MODE_FILES_ONLY</h3>
+                <pre class="signature">MODE_FILES_ONLY</pre>
+                <p><em>Constant value used as a parameter for list/find methods to list only files.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MODE_FOLDERS_ONLY" name="constant_MODE_FOLDERS_ONLY" class="anchor"></a>
+            <article id="constant_MODE_FOLDERS_ONLY" class="constant">
+                <h3 class="">MODE_FOLDERS_ONLY</h3>
+                <pre class="signature">MODE_FOLDERS_ONLY</pre>
+                <p><em>Constant value used as a parameter for list/find methods to list only directories.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MODE_FILES_AND_FOLDERS" name="constant_MODE_FILES_AND_FOLDERS" class="anchor"></a>
+            <article id="constant_MODE_FILES_AND_FOLDERS" class="constant">
+                <h3 class="">MODE_FILES_AND_FOLDERS</h3>
+                <pre class="signature">MODE_FILES_AND_FOLDERS</pre>
+                <p><em>Constant value used as a parameter for list/find methods to list both files and directories.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toOctalPermissions" name="method_toOctalPermissions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toOctalPermissions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toOctalPermissions(string  <span class="argument">$rwx_permissions</span>) : integer</pre>
+                <p><em>Transform the provided rwx- permission string to the octal value.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$rwx_permissions </td>
+                                <td><p>The permission string.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>the octal value for the permission string.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toRwxPermissions" name="method_toRwxPermissions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toRwxPermissions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toRwxPermissions(integer  <span class="argument">$octal_permissions</span>) : string</pre>
+                <p><em>Transform the provided octal permission value to the rwx- format.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$octal_permissions </td>
+                                <td><p>The octal permission value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the rwx permission string, as a 9 [rwx-] character string.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDefaultPermissionsOctal" name="method_setDefaultPermissionsOctal" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDefaultPermissionsOctal()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDefaultPermissionsOctal(integer  <span class="argument">$perms</span>) </pre>
+                <p><em>Sets the default permissions when creating new elements as an octal value.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$perms </td>
+                                <td><p>The permissions octal.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDefaultPermissionsOctal" name="method_getDefaultPermissionsOctal" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDefaultPermissionsOctal()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDefaultPermissionsOctal() : integer</pre>
+                <p><em>Returns the default permissions used when creating new elements as an octet string.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The full octal value for the permissions.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDefaultPermissionsRwx" name="method_setDefaultPermissionsRwx" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDefaultPermissionsRwx()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDefaultPermissionsRwx(string  <span class="argument">$perms</span>) </pre>
+                <p><em>Sets the default rwx permissions used when creating new elements.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$perms </td>
+                                <td><p>The 9 character [rwx-] permissions string.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDefaultPermissionsRwx" name="method_getDefaultPermissionsRwx" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDefaultPermissionsRwx()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDefaultPermissionsRwx() : string</pre>
+                <p><em>Returns the default rwx permissions used when creating new elements.</em></p>
+                <p>Defaults to all permissions enabled.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the rwx permissions string.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_equals" name="method_equals" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">equals()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">equals(\Mbcraft\Piol\File|\Mbcraft\Piol\Dir  <span class="argument">$file_or_dir</span>) : boolean</pre>
+                <p><em>Checks if this element is equal to another provided element : it has the same class and points to the same path.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Mbcraft.Piol.File.html">\Mbcraft\Piol\File</a>|<a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a></td>
+                                <td>$file_or_dir </td>
+                                <td><p>The File or Dir instance to check.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the provided object is of the same class and points to the same path, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isChildOf" name="method_isChildOf" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isChildOf()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isChildOf(\Mbcraft\Piol\Dir|string  <span class="argument">$parent</span>) : boolean</pre>
+                <p><em>Checks if this element is a child of the specified directory.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>|string</td>
+                                <td>$parent </td>
+                                <td><p>The parent directory.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this directory is a direct parent of this one, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isDir" name="method_isDir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isDir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isDir() : boolean</pre>
+                <p><em>Checks if this element is a directory.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this element points to a directory, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isFile" name="method_isFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isFile() : boolean</pre>
+                <p><em>Checks if this element is a file.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this element points to a file, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_exists" name="method_exists" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">exists()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">exists() : boolean</pre>
+                <p><em>Returns true if the path of this element points to an existing file or directory,
+false otherwise.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this element exists in the file system, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLastAccessTime" name="method_getLastAccessTime" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLastAccessTime()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLastAccessTime() : integer</pre>
+                <p><em>Returns the last access time of this element, as Unix timestamp.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The last access time of this element, as Unix timestamp.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getModificationTime" name="method_getModificationTime" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getModificationTime()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getModificationTime() : integer</pre>
+                <p><em>Returns the modification time of this element, as Unix timestamp.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The modification time of this element, as Unix timestamp.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_rename" name="method_rename" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">rename()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">rename(string  <span class="argument">$new_name</span>) : boolean</pre>
+                <p><em>Renames this directory without moving it.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$new_name </td>
+                                <td><p>The new name to assign to this folder.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Mbcraft\Piol\IOException</dt>
+                            <dd><p>if the name contains invalid characters (path components).</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the operation was succesfull, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_moveTo" name="method_moveTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">moveTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">moveTo(\Mbcraft\Piol\Dir|string  <span class="argument">$target_dir</span>, string  <span class="argument">$new_name = null</span>) : boolean</pre>
+                <p><em>Moves this element and all its content to the specified target directory.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>|string</td>
+                                <td>$target_dir </td>
+                                <td><p>The target directory as string path or Dir instance.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$new_name </td>
+                                <td><p>The optional new full name of the moved element.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this operation was succesfull, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_copy" name="method_copy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">copy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">copy(\Mbcraft\Piol\Dir|string  <span class="argument">$path</span>, string  <span class="argument">$new_name = null</span>) </pre>
+                <p><em>Copies this directory and all its content to a new path.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>|string</td>
+                                <td>$path </td>
+                                <td><p>the path where to copy this folder and all its content.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$new_name </td>
+                                <td><p>An aoptional new name for the copied folder.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFullPath" name="method_getFullPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFullPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFullPath() : string</pre>
+                <p><em>Returns the full absolute path of this element.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the full path of this element.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPath" name="method_getPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPath(\Mbcraft\Piol\Dir|string  <span class="argument">$ancestor = null</span>) : string</pre>
+                <p><em>Returns the relative path of this element.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>|string</td>
+                                <td>$ancestor </td>
+                                <td><p>An optional ancestor Dir or string path for returning a shortened path.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Mbcraft\Piol\IOException</dt>
+                            <dd><p>If the ancestor path is not a prefix of the relative path.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The string path</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasAttachedStorage" name="method_hasAttachedStorage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasAttachedStorage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasAttachedStorage(string  <span class="argument">$storage_type = &quot;ini&quot;</span>) : boolean</pre>
+                <p><em>Checks if this element has storage data. Default uses properties storage.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$storage_type </td>
+                                <td><p>The type of storage to check.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this element has stored properties, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_deleteAttachedStorage" name="method_deleteAttachedStorage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">deleteAttachedStorage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">deleteAttachedStorage(string  <span class="argument">$storage_type = &quot;ini&quot;</span>) </pre>
+                <p><em>Deletes all the storage data for this element. Default deletes properties storage.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$storage_type </td>
+                                <td><p>The type of storage to delete.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAttachedStorage" name="method_getAttachedStorage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAttachedStorage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAttachedStorage(string  <span class="argument">$storage_type = &quot;ini&quot;</span>) : \Mbcraft\Piol\Storage\PropertiesStorage</pre>
+                <p><em>Returns the storage data of this element, using the standard protected storage.</em></p>
+                <p>Default uses properties storage.
+Files are clustered by parent directory.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$storage_type </td>
+                                <td><p>The type of storage to get.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Mbcraft\Piol\Storage\PropertiesStorage
+                                            &mdash; <p>the properties storage for this element.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___toString" name="method___toString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__toString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__toString() : string</pre>
+                <p><em>Return the relative path of this element.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the path of this element as a string.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isReadable" name="method_isReadable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isReadable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isReadable() : boolean</pre>
+                <p><em>Returns true if this user has READ permissions on this element.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this element is READABLE.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isWritable" name="method_isWritable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isWritable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isWritable() : boolean</pre>
+                <p><em>Returns true if this user has READ and WRITE permissions on this element, false otherwise.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this element is READABLE and WRITABLE.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toRelativePath" name="method_toRelativePath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toRelativePath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toRelativePath(string  <span class="argument">$full_path</span>) : string</pre>
+                <p><em>Returns the path relative to the FileSystemUtils::getPiolRootPath(). If the path is not child of FileSystemUtils::getPiolRootPath()
+an exception in thrown.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$full_path </td>
+                                <td><p>The path to transform.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Mbcraft\Piol\IOException</dt>
+                            <dd><p>If the path is not child of the FileSystemUtils::getPiolRootPath()</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the relative path.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFullName" name="method_getFullName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFullName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFullName() : string</pre>
+                <p><em>Returns the name of this directory, without other path components.</em></p>
+                <p>Same as getName().</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the name of this directory.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getName" name="method_getName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getName() : string</pre>
+                <p><em>Returns the name of this directory, without other path components.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the name of this directory.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getInfo" name="method_getInfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getInfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getInfo() : array</pre>
+                <p><em>Returns an associative array of data about this directory. The following fields are set :
+full_path, path, name, type, empty, permissions.</em></p>
+                <p>The following fields are provided :</p>
+<p>full_path, path, name, type, permissions (both File and Dir).
+empty : only Dir.
+extension, full_extension, mime_type, size, size_auto : only File.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>an associative array of data about this directory.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isEmpty" name="method_isEmpty" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isEmpty()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isEmpty() : boolean</pre>
+                <p><em>Checks if this directory is empty or has nested elements inside.</em></p>
+                <p>For directories : no files inside.
+For files : size is equal to zero.</p>
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Mbcraft\Piol\IOException</dt>
+                            <dd><p>If the path does not point to an existing directory.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this directory is empty, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getParentDir" name="method_getParentDir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getParentDir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getParentDir() : \Mbcraft\Piol\Dir</pre>
+                <p><em>Returns the parent directory as a Dir instance of this element.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>
+                                            &mdash; <p>The parent directory</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.__FileSystemElement.html"><div class="path-wrapper">\Mbcraft\Piol\__FileSystemElement</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___call" name="method___call" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__call()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__call(string  <span class="argument">$name</span>, array  <span class="argument">$arguments</span>) </pre>
+                <p><em>This method is called when a missing method is called.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>The name of the non-existing method.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$arguments </td>
+                                <td><p>The arguments of the call.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.PiolObject.html"><div class="path-wrapper">\Mbcraft\Piol\PiolObject</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___callStatic" name="method___callStatic" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__callStatic()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__callStatic(string  <span class="argument">$name</span>, array  <span class="argument">$arguments</span>) </pre>
+                <p><em>This method is called when a missing static method is called.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>The name of the non-existing static method.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$arguments </td>
+                                <td><p>The arguments of the call.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Mbcraft.Piol.PiolObject.html"><div class="path-wrapper">\Mbcraft\Piol\PiolObject</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$path</span>) </pre>
+                <p><em>Construct a directory instance, using a path relative to PIOL_ROOT_PATH.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td><p>the path of this directory, relative to PIOL_ROOT_PATH as a root.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_asDir" name="method_asDir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">asDir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">asDir(\Mbcraft\Piol\Dir|string  <span class="argument">$dir_or_path</span>) : \Mbcraft\Piol\Dir</pre>
+                <p><em>Returns a valid \Mbcraft\Piol\Dir instance.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>|string</td>
+                                <td>$dir_or_path </td>
+                                <td><p>a dir instance or string path to convert</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Mbcraft\Piol\IOException</dt>
+                            <dd><p>if a valid dir instance or a valid directory path is not provided as a parameter.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>
+                                            &mdash; <p>a valid dir instance</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_visit" name="method_visit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">visit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">visit(object  <span class="argument">$visitor</span>) </pre>
+                <p><em>Visits this directory and all its subfolders using the visitor pattern.</em></p>
+                <p>The parameter should be an object of a class with a public 'visit' function, accepting a \Piol\Dir instance
+as the only parameter. The function should return a boolean value, where true means 'visit my subfolders' and false means 'does not visit my subfolders'.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>object</td>
+                                <td>$visitor </td>
+                                <td><p>the visitor instance.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLevel" name="method_getLevel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLevel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLevel() : integer</pre>
+                <p><em>Returns the level of this directory, where level is the number of folders separating it
+from the PIOL_ROOT_PATH.</em></p>
+                <p>Eg. :
+/ --&gt; 0
+/test/ --&gt; 1
+/test/js/mooo/ --&gt; 3</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>the level of this directory (deepness).</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_touch" name="method_touch" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">touch()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">touch() </pre>
+                <p><em>Creates this directory if it doesn&#039;t exists, or updates the last access time
+if it already exists.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isAncestorOrSame" name="method_isAncestorOrSame" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isAncestorOrSame()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isAncestorOrSame(\Mbcraft\Piol\Dir|string  <span class="argument">$subdir</span>) : boolean</pre>
+                <p><em>Checks if this directory is ancestor or same of the specified parameter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>|string</td>
+                                <td>$subdir </td>
+                                <td><p>a directory path or Dir instance.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Mbcraft\Piol\IOException</dt>
+                            <dd><p>If the parameter is not a valid directory inside PIOL_ROOT_PATH.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the parameter is an ancestor or points to the same directory of this instance, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newRandomSubdir" name="method_newRandomSubdir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newRandomSubdir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newRandomSubdir() : \Mbcraft\Piol\Dir</pre>
+                <p><em>Creates a new random subdirectory inside this one, returning it as a Dir instance
+pointing to it.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Mbcraft\Piol\IOException</dt>
+                            <dd><p>If the specified name is already used for another kind of file system element (it should never happen) or it's not possible to create the directory.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>
+                                            &mdash; <p>the created subdirectory.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newSubdir" name="method_newSubdir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newSubdir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newSubdir(string  <span class="argument">$name</span>) : \Mbcraft\Piol\Dir</pre>
+                <p><em>Creates a new subdirectory inside this one, or returns an existing one,
+returning a \Mbcraft\Piol\Dir instance pointing to it.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>The name of the subdirectory to create.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Mbcraft\Piol\IOException</dt>
+                            <dd><p>If the specified name is already used for another kind of file system element or it's not possible to create the directory.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>
+                                            &mdash; <p>The existing subdirectory.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_listFiles" name="method_listFiles" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">listFiles()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">listFiles(array  <span class="argument">$myExcludes = self::DEFAULT_EXCLUDES</span>, boolean  <span class="argument">$deep = false</span>) : array</pre>
+                <p><em>List all the files inside this directory, excluding the ones that matches at least one of the specified patterns.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$myExcludes </td>
+                                <td><p>an array of regexp patterns used to match excluded elements against their full name.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$deep </td>
+                                <td><p>if true searches inside all the contained folders, otherwise only in this one.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>an array of two arrays, with all the files that matched and all the directories that matched,
+as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_listFolders" name="method_listFolders" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">listFolders()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">listFolders(array  <span class="argument">$myExcludes = self::DEFAULT_EXCLUDES</span>, boolean  <span class="argument">$deep = false</span>) : array</pre>
+                <p><em>List all the folders inside this directory, excluding the ones that matches at least one of the specified patterns.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$myExcludes </td>
+                                <td><p>an array of regexp patterns used to match excluded elements against their full name.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$deep </td>
+                                <td><p>if true searches inside all the contained folders, otherwise only in this one.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>an array of two arrays, with all the files that matched and all the directories that matched,
+as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_listElements" name="method_listElements" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">listElements()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">listElements(integer  <span class="argument">$mode = self::MODE_FILES_AND_FOLDERS</span>, array  <span class="argument">$myExcludes = self::DEFAULT_EXCLUDES</span>, boolean  <span class="argument">$deep = false</span>) : \Mbcraft\Piol\type</pre>
+                <p><em>List all the elements inside this directory, excluding the ones that matches at least one of the specified patterns.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$mode </td>
+                                <td><p>Only the following values, specified as constants inside this class, can be used :
+MODE_FILES_ONLY, MODE_FOLDERS_ONLY, MODE_FILES_AND_FOLDERS.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$myExcludes </td>
+                                <td><p>an array of regexp patterns used to match excluded elements against their full name.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$deep </td>
+                                <td><p>if true searches inside all the contained folders, otherwise only in this one.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Mbcraft\Piol\type
+                                            &mdash; <p>array an array of two arrays, with all the files that matched and all the directories that matched,
+as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_findElementsStartingWith" name="method_findElementsStartingWith" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">findElementsStartingWith()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">findElementsStartingWith(integer  <span class="argument">$mode</span>, string  <span class="argument">$string</span>, boolean  <span class="argument">$deep = false</span>) : \Mbcraft\Piol\type</pre>
+                <p><em>Find all elements starting with the specified string.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$mode </td>
+                                <td><p>Only the following values, specified as constants inside this class, can be used :
+MODE_FILES_ONLY, MODE_FOLDERS_ONLY, MODE_FILES_AND_FOLDERS.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$string </td>
+                                <td><p>the string used for comparison with the starting part of the full name of the
+nested elements.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$deep </td>
+                                <td><p>if true searches inside all the contained folders, otherwise only in this one.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Mbcraft\Piol\type
+                                            &mdash; <p>array an array of two arrays, with all the files that matched and all the directories that matched,
+as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_findElementsEndingWith" name="method_findElementsEndingWith" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">findElementsEndingWith()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">findElementsEndingWith(integer  <span class="argument">$mode</span>, string  <span class="argument">$string</span>, boolean  <span class="argument">$deep = false</span>) : array</pre>
+                <p><em>Find all elements ending with the specified string.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$mode </td>
+                                <td><p>Only the following values, specified as constants inside this class, can be used :
+MODE_FILES_ONLY, MODE_FOLDERS_ONLY, MODE_FILES_AND_FOLDERS.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$string </td>
+                                <td><p>the string used for comparison with the ending part of the full names of the
+nested elements.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$deep </td>
+                                <td><p>if true searches inside all the contained folders, otherwise only in this one.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>an array of two arrays, with all the files that matched and all the directories that matched,
+as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_findMatchingElements" name="method_findMatchingElements" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">findMatchingElements()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">findMatchingElements(integer  <span class="argument">$mode</span>, array  <span class="argument">$myIncludes</span>, boolean  <span class="argument">$deep = false</span>) : array</pre>
+                <p><em>Finds all matching elements inside this folder.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$mode </td>
+                                <td><p>Only the following values, specified as constants inside this class, can be used :
+MODE_FILES_ONLY, MODE_FOLDERS_ONLY, MODE_FILES_AND_FOLDERS.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$myIncludes </td>
+                                <td><p>an array of regexp pattern of the elements to match using their full names.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$deep </td>
+                                <td><p>if true the search is done recursively on all subfolders, otherwise only inside this one.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>an array of two arrays, with all the files that matched and all the directories that matched,
+as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newDir" name="method_newDir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newDir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newDir(\Mbcraft\Piol\type  <span class="argument">$name</span>) : \Mbcraft\Piol\Dir</pre>
+                <p><em>Creates a new Directory instance inside this directory.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Mbcraft\Piol\type</td>
+                                <td>$name </td>
+                                <td><p>The name for this directory.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>
+                                            &mdash; <p>The file instance.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newFile" name="method_newFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newFile(string  <span class="argument">$name</span>) : \Mbcraft\Piol\File</pre>
+                <p><em>Creates a new File instance inside this directory.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>the name for this file.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Mbcraft.Piol.File.html">\Mbcraft\Piol\File</a>
+                                            &mdash; <p>The file instance.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete" name="method_delete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete() : boolean</pre>
+                <p><em>Deletes this folder.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>if the delete operation was fully successfull, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasOnlyOneSubdir" name="method_hasOnlyOneSubdir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasOnlyOneSubdir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasOnlyOneSubdir() : boolean</pre>
+                <p><em>Checks if this directory has exactly only one subdirectory (and no files).</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if this folder contains exactly one file and nothing else, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_randomRename" name="method_randomRename" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">randomRename()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">randomRename() : boolean</pre>
+                <p><em>Gives this directory a new random name.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>if the operation was succesfull, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUniqueSubdir" name="method_getUniqueSubdir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getUniqueSubdir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUniqueSubdir() : \Mbcraft\Piol\Dir</pre>
+                <p><em>Returns the only subfolder inside this directory, as a \Mbcraft\Piol\Dir instance.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Mbcraft\Piol\IOException</dt>
+                            <dd><p>If there is not exactly one subdirectory inside this one.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a>
+                                            &mdash; <p>the unique subdirectory found inside this one.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasSubdirs" name="method_hasSubdirs" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasSubdirs()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasSubdirs() : boolean</pre>
+                <p><em>Returns true if this folder has AT LEAST ONE subfolder.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if it has at least one subfolder, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isParentOf" name="method_isParentOf" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isParentOf()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isParentOf(\Mbcraft\Piol\File|\Mbcraft\Piol\Dir  <span class="argument">$child</span>) : boolean</pre>
+                <p><em>Checks if this directory is a parent of the provided child.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Mbcraft.Piol.File.html">\Mbcraft\Piol\File</a>|<a href="../classes/Mbcraft.Piol.Dir.html">\Mbcraft\Piol\Dir</a></td>
+                                <td>$child </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the parameter is a direct child of this directory, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPermissions" name="method_setPermissions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPermissions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPermissions(string  <span class="argument">$rwx_permissions</span>, boolean  <span class="argument">$recursive = false</span>) : boolean</pre>
+                <p><em>Sets the permissions on this directory using a 9 [rwx-] character string.</em></p>
+                <p>This operation is not guaranteed to succeed.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$rwx_permissions </td>
+                                <td><p>The string permissions to set for this directory.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$recursive </td>
+                                <td><p>defaults to false, sets the permissions to all the child file system elements.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the operation was succesfull, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasPermissions" name="method_hasPermissions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasPermissions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasPermissions(string  <span class="argument">$rwx_permissions</span>) : boolean</pre>
+                <p><em>Checks if this directory has all the permissions specified in the parameter string.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$rwx_permissions </td>
+                                <td><p>The 9 [rwx-] character string permissions to check.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if all the permissions checked are set for this directory, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPermissions" name="method_getPermissions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPermissions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPermissions() : string</pre>
+                <p><em>Returns the permissions for this Directory as a 9 [rwx-] character string.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the permissions for this directory.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            api
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Dir.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Dir.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Mbcraft.html">\Mbcraft</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on October 9th, 2015 at 11:28.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
