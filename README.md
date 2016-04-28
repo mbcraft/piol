@@ -36,19 +36,20 @@ run_tests.php       <-- web test runner
 
 ## Installation & Usage : 
 
-Inside your code simply put
+Inside your code simply add the use directives on top of the code files where you need, eg.:
 
-`require_once '<piol_library_location>/Mbcraft/Piol.php';`
+`use Mbcraft/Piol/File;`
+`use Mbcraft/Piol/Dir;`
 
-the library will load with its default settings (document root as PIOL_ROOT_PATH) and everything
+the library will load with its default settings (file root jail as PIOL_ROOT_PATH) and everything
 should work out of the box.
 
-The library has no external dependencies, all classes are inside the Piol namespace.
+The library has no external dependencies, all used classes are inside the Mbcraft\Piol namespace.
 
-Then define PIOL_ROOT_PATH as a constant with 'define' directive inside php before library
-usage. It defines what your root directory is. All absolute paths of File's or Dir's
-will start from this one. The definition of this constant is REQUIRED for this library
-to work.
+If you define a PIOL_ROOT_PATH as a constant with 'define' directive inside php before library
+usage you can define what your file root jail directory is. All paths of File's or Dir's
+will start from this one (so they are relative). The definition of this constant is REQUIRED for this library
+to work. If the library is used inside a Laravel project, the PIOL_ROOT_PATH is automatically set to the source file root.
 
 ## Running tests :
 
@@ -81,6 +82,7 @@ and set (Linux only) and much more.
 - Upload handler : easy handle file uploads with UploadUtils class, even multiple file uploads are
 handled easily.
 - Cache class useful for caches is available : check the FlatDirCache class.
+- Automatic Laravel framework integration.
 
 ## Documentation :
 
