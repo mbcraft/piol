@@ -1,7 +1,7 @@
 {
     "name": "mbcraft/piol",
     "description": "Piol is a library for handling files and directories.",
-    "license": "MBCRAFT Project License",
+    "license": "MIT",
     "keywords" : ["io","library","files","directories","storage","cache"],
     "authors": [
         {
