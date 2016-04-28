@@ -19,8 +19,6 @@ test/               <-- unit test classes and data
 
 vendor/             <-- empty but ready for composer packages (used for running unit tests)
 
-LICENSE             <-- your usage license :)
-
 README.md           <-- instructions and description of whole package
 
 composer.json       <-- composer configuration
@@ -39,6 +37,7 @@ run_tests.php       <-- web test runner
 Inside your code simply add the use directives on top of the code files where you need, eg.:
 
 `use Mbcraft/Piol/File;`
+
 `use Mbcraft/Piol/Dir;`
 
 the library will load with its default settings (file root jail as PIOL_ROOT_PATH) and everything
@@ -91,7 +90,7 @@ with your favorite browser.
 
 ## Info :
 
-Current version : 2.0.0
+Current version : 2.0.1
 
 ## Latest changes :
 
