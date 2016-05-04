@@ -646,6 +646,26 @@ namespace Mbcraft\Piol {
             $parent_path = str_replace("\\", DS, $parent_path);
             return new Dir($parent_path);
         }
+        
+        public function setOwner($owner) {
+            chown($this->__full_path, $owner);
+        }
+        
+        public function getOwner() {
+            $file_info = stat($this->__full_path);
+            $user_info = posix_getpwuid($file_info["uid"]);
+            return $user_info["name"];
+        }
+        
+        public function getGroup() {
+            $group_id = filegroup($this->__full_path);
+            $group_info = posix_getgrgid($group_id);
+            return $group_info["name"];
+        }
+        
+        public function setGroup($group) {
+            chgrp($this->__full_path, $group);
+        }
 
     }
 
