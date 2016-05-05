@@ -34,7 +34,7 @@ class FileSystemUtilsTest extends PHPUnit_Framework_TestCase
     function testIsValidFilename() {
         
         $valid_filenames = ["a name with some spacesò#°§!!.yoo","a.b.c.txt","[a strange name]x.aaa","{Another strange (name)}.dat","A name@home.goo","Are you sure;-_this is a good name'^èèè.saa"];
-        $invalid_filenames = ["COM","COM.dat","I.test?.rar","Another/name.txt","Strange|piped.nam","A good\\name.poo"];
+        $invalid_filenames = ["COM","COM.dat","I.test?.rar","Another/name.txt","Strange|piped.nam","A good*name.poo"];
     
         foreach ($valid_filenames as $fn) {
             $this->assertTrue(FileSystemUtils::isValidFilename($fn),"Il nome del file non è valido!!");
