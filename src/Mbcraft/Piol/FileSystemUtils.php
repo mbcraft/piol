@@ -216,7 +216,6 @@ namespace Mbcraft\Piol {
             $path_part = str_replace('$','_',$path_part);
             $path_part = str_replace('%','_',$path_part);
             $path_part = str_replace('&','_',$path_part);
-            $path_part = str_replace('/','_',$path_part);
             $path_part = str_replace('?','_',$path_part);
             $path_part = str_replace('!','_',$path_part);
             $path_part = str_replace(':','_',$path_part);

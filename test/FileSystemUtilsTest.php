@@ -71,11 +71,11 @@ class FileSystemUtilsTest extends PHPUnit_Framework_TestCase
         
         $path_part1 = "my'apos dir/";
         
-        $this->assertEquals("my_apos dir/", FileSystemUtils::filterPathName($path_part1), "Il nome della directory non è stato modificato correttamente!!'");
+        $this->assertEquals("my_apos_dir/", FileSystemUtils::filterPathName($path_part1), "Il nome della directory non è stato modificato correttamente!!'");
     
         $path_part2 = 'this is a "strange" file.txt';
         
-        $this->assertEquals('this is a _strange_ file.txt', FileSystemUtils::filterPathName($path_part2), "Il nome del file non è stato modificato correttamente!!'");
+        $this->assertEquals('this_is_a__strange__file.txt', FileSystemUtils::filterPathName($path_part2), "Il nome del file non è stato modificato correttamente!!'");
     
     }
 }
