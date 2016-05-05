@@ -113,7 +113,7 @@ namespace Mbcraft\Piol {
                 if (($filename == $prefix) || (strpos($filename,$prefix.".")===0)) 
                         return false;
             }
-            $result = preg_match("/.*[\<\>\:\"\/\\\|\?\*]+.*/",$filename) || self::isCurrentDirName($filename) || self::isParentDirName($filename);
+            $result = preg_match("/.*[\<\>\:\"\/\|\?\*]+.*/",$filename) || self::isCurrentDirName($filename) || self::isParentDirName($filename);
             return !$result;
         }
         
@@ -180,6 +180,49 @@ namespace Mbcraft\Piol {
          */
         public static function getTotalDiskSpace() {
             return disk_total_space(FileSystemUtils::getPiolRootPath());
+        }
+        
+        /**
+         * Clears a path removing double slashes and making it absolute.
+         * 
+         * @param string $path The path to clear
+         * 
+         * @return The cleaned path (no double slashes, absolute path).
+         */
+        public static function getCleanedPath($path) {
+            //SAFETY NET, rimuovo tutti i .. all'interno del percorso.
+            $path = str_replace(DS . "..", "", $path);
+            //pulizia doppie barre dai percorsi
+            $path = str_replace("//", DS, $path);
+            
+            
+            return $path;
+        }
+        
+        /**
+         * Replaces quotes and double quotes inside path part with underscores.
+         * 
+         * @param type $path_part
+         */
+        public static function filterPathName($path_part) { 
+            $path_part = str_replace('\ ','_',$path_part);
+            $path_part = str_replace('\'','_',$path_part);
+            $path_part = str_replace('"','_',$path_part);
+            $path_part = str_replace(' ','_',$path_part);
+            $path_part = str_replace('(','_',$path_part);
+            $path_part = str_replace(')','_',$path_part);
+            $path_part = str_replace('[','_',$path_part);
+            $path_part = str_replace(']','_',$path_part);
+            $path_part = str_replace('{','_',$path_part);
+            $path_part = str_replace('}','_',$path_part);
+            $path_part = str_replace('$','_',$path_part);
+            $path_part = str_replace('%','_',$path_part);
+            $path_part = str_replace('&','_',$path_part);
+            $path_part = str_replace('?','_',$path_part);
+            $path_part = str_replace('!','_',$path_part);
+            $path_part = str_replace(':','_',$path_part);
+            $path_part = str_replace('-','_',$path_part);
+            return $path_part;
         }
         
     }

@@ -113,7 +113,7 @@ namespace Mbcraft\Piol {
                 if (($filename == $prefix) || (strpos($filename,$prefix.".")===0)) 
                         return false;
             }
-            $result = preg_match("/.*[\<\>\:\"\/\\\|\?\*]+.*/",$filename) || self::isCurrentDirName($filename) || self::isParentDirName($filename);
+            $result = preg_match("/.*[\<\>\:\"\/\|\?\*]+.*/",$filename) || self::isCurrentDirName($filename) || self::isParentDirName($filename);
             return !$result;
         }
         
@@ -205,6 +205,7 @@ namespace Mbcraft\Piol {
          * @param type $path_part
          */
         public static function filterPathName($path_part) { 
+            $path_part = str_replace('\ ','_',$path_part);
             $path_part = str_replace('\'','_',$path_part);
             $path_part = str_replace('"','_',$path_part);
             $path_part = str_replace(' ','_',$path_part);

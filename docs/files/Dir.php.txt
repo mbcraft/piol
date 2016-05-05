@@ -562,7 +562,7 @@ namespace Mbcraft\Piol {
          * 
          * Checks if this directory has exactly only one subdirectory (and no files).
          * 
-         * @return boolean true if this folder contains exactly one file and nothing else, false otherwise.
+         * @return boolean true if this folder contains exactly one folder and nothing else, false otherwise.
          * 
          * @api
          */
@@ -571,6 +571,24 @@ namespace Mbcraft\Piol {
             if (count($content[0]) == 0 && count($content[1]) == 1) {
                 $dir_elem = $content[1][0];
                 if ($dir_elem->isDir())
+                    return true;
+            }
+            return false;
+        }
+        
+        /**
+         * 
+         * Checks if this directory has exactly only one file inside (and no folders).
+         * 
+         * @return boolean true if this folder contains exactly one file and nothing else, false otherwise.
+         * 
+         * @api
+         */
+        public function hasOnlyOneFile() {
+            $content = $this->listElements();
+            if (count($content[0]) == 0 && count($content[1]) == 1) {
+                $dir_elem = $content[1][0];
+                if ($dir_elem->isFile())
                     return true;
             }
             return false;
@@ -606,6 +624,26 @@ namespace Mbcraft\Piol {
                 throw new IOException("L'elemento presente all'interno della directory non è una cartella.");
             }
             throw new IOException("Errore nell'esecuzione del metodo getUniqueSubdir. Numero elementi:" . count($content));
+        }
+        
+        /**
+         * 
+         * Returns the only file inside this directory, as a \Mbcraft\Piol\File instance.
+         * 
+         * @return \Mbcraft\Piol\File the unique file found inside this folder.
+         * @throws \Mbcraft\Piol\IOException If there is not exactly one file inside this folder.
+         * 
+         * @api
+         */
+        public function getUniqueFile() {
+            $content = $this->listElements();
+            if (count($content[0]) == 0 && count($content[1]) == 1) {
+                $file_elem = $content[1][0];
+                if ($file_elem->isFile())
+                    return $file_elem;
+                throw new IOException("L'elemento presente all'interno della directory non è un file.");
+            }
+            throw new IOException("Errore nell'esecuzione del metodo getUniqueFile. Numero elementi:" . count($content));
         }
 
         /**

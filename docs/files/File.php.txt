@@ -62,9 +62,7 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function __construct($path) {
-            $new_path = str_replace("\\", DS, $path);
-
-            parent::__construct($new_path);
+            parent::__construct($path);
         }
 
         /**
@@ -268,7 +266,7 @@ namespace Mbcraft\Piol {
                 FileSystemUtils::checkValidFilename($new_name);
                 $n_name = $new_name;
             }
-            return copy($this->__full_path, $t_dir->__full_path . DS . $n_name);
+            return copy($this->__full_path, $t_dir->__full_path . $n_name);
         }
 
         /**
