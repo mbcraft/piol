@@ -492,6 +492,33 @@ class FileTest extends PHPUnit_Framework_TestCase
 
         $f3->delete();
     }
+    
+    function testFileWithDifficultName() {
+        
+        $f = new File("test/difficult_names/src/00 - Época\ Porteño.txt");
+        
+        $this->assertTrue($f->exists(),"Il file non è stato trovato!");
+        
+        $this->assertEquals("00 - Época\ Porteño.txt",$f->getFullName(),"Il nome del file non è letto correttamente!!");
+        
+        $this->assertEquals("test/difficult_names/src/00 - Época\ Porteño.txt",$f->getPath(),"Il percorso completo del file non corrisponde!");
+    
+        $this->assertEquals("00 - Época\ Porteño",$f->getName(),"Il nome senza estensione del file non corrisponde!");
+        
+    }
+    
+    function testCopyFileWithDifficultName() {
+        $f = new File("test/difficult_names/src/00 - Época\ Porteño.txt");
+        $d = new Dir("test/difficult_names/dest/");
+        
+        $f->copy($d);
+        
+        $copied = new File("test/difficult_names/dest/00 - Época\ Porteño.txt");
+        $this->assertTrue($copied->exists(),"Il file non è stato copiato correttamente!");
+        $copied->delete();
+        $this->assertFalse($copied->exists(),"Il file non è stato eliminato correttamente!");
+        
+    }
 
 }
 

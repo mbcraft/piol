@@ -78,6 +78,12 @@ class FileSystemUtilsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('this_is_a__strange__file.txt', FileSystemUtils::filterPathName($path_part2), "Il nome del file non è stato modificato correttamente!!'");
     
     }
+    
+    function testDifficultFileName() {
+        $difficult_file_path = "test/difficult_names/src/00 - Época\ Porteño.txt";
+        
+        $f = $this->assertTrue(FileSystemUtils::isFile($difficult_file_path),"Il percorso non è riconosciuto come nome di file valido!");
+    }
 }
 
 

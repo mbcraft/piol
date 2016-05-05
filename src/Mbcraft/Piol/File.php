@@ -62,9 +62,7 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function __construct($path) {
-            $new_path = str_replace("\\", DS, $path);
-
-            parent::__construct($new_path);
+            parent::__construct($path);
         }
 
         /**

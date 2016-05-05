@@ -195,6 +195,7 @@ namespace Mbcraft\Piol {
             //pulizia doppie barre dai percorsi
             $path = str_replace("//", DS, $path);
             
+            
             return $path;
         }
         
