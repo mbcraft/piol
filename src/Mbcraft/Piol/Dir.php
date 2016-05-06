@@ -586,9 +586,9 @@ namespace Mbcraft\Piol {
          */
         public function hasOnlyOneFile() {
             $content = $this->listElements();
-            if (count($content[0]) == 0 && count($content[1]) == 1) {
-                $dir_elem = $content[1][0];
-                if ($dir_elem->isFile())
+            if (count($content[0]) == 1 && count($content[1]) == 0) {
+                $file_elem = $content[0][0];
+                if ($file_elem->isFile())
                     return true;
             }
             return false;
@@ -637,8 +637,9 @@ namespace Mbcraft\Piol {
          */
         public function getUniqueFile() {
             $content = $this->listElements();
-            if (count($content[0]) == 0 && count($content[1]) == 1) {
-                $file_elem = $content[1][0];
+            
+            if (count($content[0]) == 1 && count($content[1]) == 0) {
+                $file_elem = $content[0][0];
                 if ($file_elem->isFile())
                     return $file_elem;
                 throw new IOException("L'elemento presente all'interno della directory non è un file.");
