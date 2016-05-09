@@ -68,7 +68,8 @@ class JavaXmlPropertiesUtils extends PiolObject {
      */
     public static function readFromString($string) {
 
-        $xml = \DOMDocument::loadXML($string);
+        $xml = new \DOMDocument();
+        $xml->loadXML($string);
 
         $result = [];
 
