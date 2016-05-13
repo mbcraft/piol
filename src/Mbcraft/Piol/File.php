@@ -186,8 +186,12 @@ namespace Mbcraft\Piol {
          * 
          * @api
          */
-        public function getContentHash() {
-            return sha1_file($this->__full_path);
+        public function getContentHash($hashing="sha1") {
+            if ($hashing=="sha1")
+                return sha1_file($this->__full_path);
+            if ($hashing=="md5")
+                return md5_file($this->__full_path);
+
         }
 
         /**
