@@ -1,9 +1,7 @@
 <?php
 
-use Mbcraft\Piol\Storage;
 use Mbcraft\Piol\StorageFactory;
 use Mbcraft\Piol\Dir;
-use Mbcraft\Piol\File;
 
 class StorageTest extends PHPUnit_Framework_TestCase {
 
@@ -23,8 +21,8 @@ class StorageTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($props["prova2"][0],"ciccia","La proprieta' non e' stata salvata con successo!!");
         
                 
-        $p2 = StorageFactory::getPropertiesStorage("/pluto", "ciaoasd");
-        $p3 = StorageFactory::getPropertiesStorage("pippo/", "ciaoqwe");
+        StorageFactory::getPropertiesStorage("/pluto", "ciaoasd");
+        StorageFactory::getPropertiesStorage("pippo/", "ciaoqwe");
 
         StorageFactory::setStorageRoot(StorageFactory::getDefaultStorageRoot());
     }
@@ -247,4 +245,3 @@ class StorageTest extends PHPUnit_Framework_TestCase {
     
 }
 
-?>

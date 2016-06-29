@@ -125,6 +125,9 @@ class FileWriterTest extends PHPUnit_Framework_TestCase
     function testAdvancedPrintfWriteThenRead()
     {
         $f = new File("/test/reader_writer/readwrite2.txt");
+
+        //delete test/reader_writer/readwrite2.txt to fix this test failure
+
         $this->assertFalse($f->exists(),"Il file esiste gia'!!");
         try
         {
@@ -191,7 +194,7 @@ class FileWriterTest extends PHPUnit_Framework_TestCase
         $fw->close();
         
         try {
-            $line = $fw->readLine();
+            $fw->readLine();
         
             $this->fail();
         } catch (IOException $ex) {
@@ -217,7 +220,7 @@ class FileWriterTest extends PHPUnit_Framework_TestCase
         $fw->close();
         try {
         
-            $line = $fw->writeln("Ciao!!");
+            $fw->writeln("Ciao!!");
         
             $this->fail();
         }
@@ -256,4 +259,3 @@ class FileWriterTest extends PHPUnit_Framework_TestCase
 
 }
 
-?>

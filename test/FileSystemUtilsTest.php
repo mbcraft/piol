@@ -82,9 +82,8 @@ class FileSystemUtilsTest extends PHPUnit_Framework_TestCase
     function testDifficultFileName() {
         $difficult_file_path = "test/difficult_names/src/00 - Época\ Porteño.txt";
         
-        $f = $this->assertTrue(FileSystemUtils::isFile($difficult_file_path),"Il percorso non è riconosciuto come nome di file valido!");
+        $this->assertTrue(FileSystemUtils::isFile($difficult_file_path),"Il percorso non è riconosciuto come nome di file valido!");
     }
 }
 
 
-?>

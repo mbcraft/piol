@@ -74,7 +74,7 @@ class FileReaderTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($f->exists(),"Il file esiste!!");
         
         try {
-            $reader = $f->openReader();
+            $f->openReader();
             $this->fail();
         } catch (IOException $ex) {
             
@@ -185,7 +185,6 @@ class FileReaderTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals(count($values),count($read_values),"Il numero dei valori letti non corrisponde!!");
         
-        $i = 0;
         for ($i=0;$i<count($values);$i++) {
             $this->assertEquals($values[$i],$read_values[$i],"Il valore letto non corrisponde!!");
         }
@@ -224,5 +223,3 @@ class FileReaderTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

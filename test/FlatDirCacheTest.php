@@ -104,4 +104,3 @@ class FlatDirCacheTest extends PHPUnit_Framework_TestCase
     }
 }
 
-?>

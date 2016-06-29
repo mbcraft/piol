@@ -28,4 +28,3 @@ class BlackHoleTest extends PHPUnit_Framework_TestCase
     }
 }
 
-?>

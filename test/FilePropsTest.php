@@ -28,7 +28,6 @@ class FilePropsTest extends PHPUnit_Framework_TestCase
         $storage_test_root_dir = new Dir($storage_test_root); 
         $real_store_dir = $storage_test_root_dir->getUniqueSubdir();
         $r = $real_store_dir->listElements(Dir::MODE_FILES_AND_FOLDERS);
-        $all_dirs = array_merge($r[0],$r[1]);
         $props_file_dir = $r[1][0];
         $this->assertEquals($props_file_dir->getName(),$store_subdir,"La directory creata non corrisponde!!");
         $final_stored_path = new File($real_store_dir->getPath().$props_file_dir->getName().DS.md5("FilePropsTest.php").".ini");
@@ -48,4 +47,3 @@ class FilePropsTest extends PHPUnit_Framework_TestCase
 
 }
 
-?>

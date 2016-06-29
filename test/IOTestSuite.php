@@ -17,7 +17,7 @@ require_once("ZipUtilsTest.php");
 
 class IOTestSuite extends PHPUnit_Framework_TestSuite {
     public function __construct() {
-        //parent::__construct();
+        parent::__construct();
 
         $this->addTestSuite(new ReflectionClass("BlackHoleTest"));
         $this->addTestSuite(new ReflectionClass("FilePropsTest"));

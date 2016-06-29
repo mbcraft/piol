@@ -77,8 +77,8 @@ class ZipUtilsTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($f1->exists(),"Il file my_file_01.php non e' stato estratto!!");
         $this->assertTrue(!$f1->isEmpty(),"Il file my_file_01.php e' vuoto!!");
         
-        $d1 = new Dir($extract_root."another_dir/");
-        $d2 = new Dir($extract_root."my_subdir/");
+        //$d1 = new Dir($extract_root."another_dir/");
+        //$d2 = new Dir($extract_root."my_subdir/");
         $f2 = new File($extract_root."another_dir/blabla.ini");
         $this->assertTrue($f2->exists(),"Il file blabla.ini non e' stato estratto!!");
         $this->assertTrue(!$f2->isEmpty(),"Il file blabla.ini e' vuoto!!");
@@ -100,4 +100,3 @@ class ZipUtilsTest extends PHPUnit_Framework_TestCase
     }
 }
 
-?>

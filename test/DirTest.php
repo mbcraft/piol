@@ -46,7 +46,7 @@ class DirTest extends PHPUnit_Framework_TestCase
         $ft = new File("/test/move_target/my_dir/afile.txt");
         $this->assertEquals("abc",$ft->getContent(),"Il contenuto del file spostato non corrisponde!!");
         
-        $dt->delete(true);
+        $dt->delete();
     }
     
         function testMoveToWithRename() {
@@ -69,7 +69,7 @@ class DirTest extends PHPUnit_Framework_TestCase
         $ft = new File("/test/move_target/moved_dir/afile.txt");
         $this->assertEquals("abc",$ft->getContent(),"Il contenuto del file spostato non corrisponde!!");
         
-        $dt->delete(true);
+        $dt->delete();
     }
     
     function testListElementsOnlyFolders() {
@@ -163,7 +163,7 @@ class DirTest extends PHPUnit_Framework_TestCase
         
         }
         
-        $d->delete(true);
+        $d->delete();
     }
     
     function testPermissionsOnDir() {
@@ -465,7 +465,7 @@ class DirTest extends PHPUnit_Framework_TestCase
         
         try
         {
-            $sub_dir = $dir->getUniqueSubdir();
+            $dir->getUniqueSubdir();
             $this->fail("Il metodo getUniqueSubdir non ha lanciato l'eccezione prevista.");
         }
         catch (Exception $ex)
@@ -479,7 +479,7 @@ class DirTest extends PHPUnit_Framework_TestCase
         
         try
         {
-            $sub_dir = $dir->getUniqueSubdir();
+            $dir->getUniqueSubdir();
             $this->fail("Il metodo getSingleSubdir non ha lanciato l'eccezione prevista.");
         }
         catch (Exception $ex)
@@ -579,7 +579,7 @@ class DirTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($d->exists(),"La directory non è stata cancellata!");
 
         $d_root = new Dir("/test/touch_test/my_new_dir");
-        $d_root->delete(true);
+        $d_root->delete();
         $this->assertFalse($d->exists(),"La directory root dell'albero esiste ancora!!");
 
     }
@@ -599,7 +599,7 @@ class DirTest extends PHPUnit_Framework_TestCase
         @mkdir (__DIR__.DIRECTORY_SEPARATOR."rename_test/target/");
         
         $d2 = new Dir("/test/rename_test/target/");
-        $d2->delete(true);
+        $d2->delete();
         $this->assertFalse($d2->exists(),"La directory esiste gia'!!");
         $this->assertTrue($d->rename("target"));
 
@@ -617,7 +617,7 @@ class DirTest extends PHPUnit_Framework_TestCase
         
         try {
             $d4 = new Dir("/test/rename_test/another_target/buh/");
-            $this->assertFalse($d2->rename("another_target/buh"),"Rename con spostamento andato a buon fine!!");
+            $this->assertFalse($d4->rename("another_target/buh"),"Rename con spostamento andato a buon fine!!");
 
             $this->fail();
         }
@@ -625,7 +625,7 @@ class DirTest extends PHPUnit_Framework_TestCase
             
         }
         
-        $d2->delete(true);
+        $d2->delete();
     }
     
     function testRandomRename() {
@@ -811,7 +811,7 @@ class DirTest extends PHPUnit_Framework_TestCase
         $prova = $hidden_test->newFile("prova.txt");
         $prova->setContent("Questo e' un file con un testo di prova");
         
-        $the_dir->delete(true);
+        $the_dir->delete();
         $this->assertFalse($the_dir->exists(),"La directory non e' stata eliminata!!");
         $this->assertTrue($d->isEmpty(),"Il contenuto della cartella non e' stato rimosso completamente!!");
 
@@ -839,5 +839,3 @@ class DirTest extends PHPUnit_Framework_TestCase
 
      
 }
-
-?>

@@ -7,5 +7,3 @@ function this_is_a_new_function()
 {
     echo "bla bla bla";
 }
-
-?>
