@@ -15,15 +15,14 @@ namespace Mbcraft\Piol {
     require_once("__FileSystemElement.php");
     require_once("Utils/IniPropertiesUtils.php");
     require_once("Utils/JavaXmlPropertiesUtils.php");
-    require_once("FileHandler.php");
     require_once("FileReader.php");
     require_once("FileWriter.php");
     require_once("File.php");
     require_once("Dir.php");
     require_once("Storage.php");
-    require_once("Storage/DataStorage.php");
-    require_once("Storage/PropertiesStorage.php");
-    require_once("Storage/XMLStorage.php");
+    require_once("StorageDrivers/DataStorage.php");
+    require_once("StorageDrivers/PropertiesStorage.php");
+    require_once("StorageDrivers/XMLStorage.php");
     require_once("Upload.php");
     require_once("UploadUtils.php");
     require_once("Cache/ICache.php");

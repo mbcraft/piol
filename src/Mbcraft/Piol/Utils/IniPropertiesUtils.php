@@ -3,7 +3,8 @@
  * This file contains a custom ini parsing function and the PropertiesUtils class.
  */
 namespace Mbcraft\Piol\Utils {
-    
+
+    use Mbcraft\Piol\IOException;
     use Mbcraft\Piol\PiolObject;
     use Mbcraft\Piol\File;
     /**
@@ -12,11 +13,15 @@ namespace Mbcraft\Piol\Utils {
      * 
      * @param string $string the string of data to process.
      * @param boolean $process_sections true if the properties are within sections, false otherwise.
-     * 
+     *
+     * @return array an array with all the keys of the ini string
+     *
      * @internal
      */
     function my_parse_ini_string($string, $process_sections) {
         $array = array();
+
+        $section_line = false;
 
         $lines = explode("\n", $string);
 
@@ -32,9 +37,7 @@ namespace Mbcraft\Piol\Utils {
                     $array[$current_section] = array();
                 }
             }
-
-            $statement = false;
-
+            
             if ($process_sections && !$section_line || !$process_sections) {
                 $statement = preg_match("/\A(?!;)(?P<key>[\w+\.\-]+?)\s*=\s*(?P<value>.+?)\s*\Z/", $line, $match);
 
@@ -127,7 +130,7 @@ namespace Mbcraft\Piol\Utils {
          * Reads all the properties from a file, optionally processing sections.
          * If the file does not exists, it returns an empty array.
          * 
-         * @param \Piol\File|string $file the file instance or the string path pointing to the properties file.
+         * @param File|string $file the file instance or the string path pointing to the properties file.
          * @param boolean $process_sections true if sections must be processed inside the file, false otherwise.
          * @return array an array of properties, or nested arrays if sections are found and processed inside the properties file.
          * 
@@ -152,7 +155,7 @@ namespace Mbcraft\Piol\Utils {
          * @param array $properties properties data as array or nested arrays if contained in sections.
          * @param boolean $process_sections true if properties sections must be processed inside data, false otherwise.
          * @return string all the properties encoded as a string.
-         * @throws \Mbcraft\Piol\IOException if the properties are null
+         * @throws IOException if the properties are null
          * 
          * @api
          */
@@ -207,4 +210,3 @@ namespace Mbcraft\Piol\Utils {
     }
 
 }
-?>

@@ -58,7 +58,7 @@ namespace Mbcraft\Piol\Cache {
         
         /**
          * 
-         * @var long Contains the last gatbage collection unix timestamp. 
+         * @var int Contains the last gatbage collection unix timestamp. 
          * 
          * @internal
          */

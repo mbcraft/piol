@@ -12,6 +12,8 @@
 
 namespace Mbcraft\Piol {
 
+    use Exception;
+
     /**
      * This class contains various file system utility static methods : checking for total
      * and available disk space, file name validation and file and directory identification.
@@ -34,6 +36,7 @@ namespace Mbcraft\Piol {
          * Gets the value of the root path jail directory used in this library.
          * 
          * @return string The path of the root jail dir.
+         *
          * @throws Exception If PIOL_ROOT_PATH is not configured and _ENV["PIOL_ROOT_PATH"] is not configured too.
          */
         public static function getPiolRootPath() {
@@ -41,7 +44,7 @@ namespace Mbcraft\Piol {
             //environment variable
             if (isset($_ENV["PIOL_ROOT_PATH"])) {
                 if ($_ENV["PIOL_ROOT_PATH"]==false)
-                    throw new \Exception('$_ENV["PIOL_ROOT_PATH"] is empty.');
+                    throw new Exception('$_ENV["PIOL_ROOT_PATH"] is empty.');
                 return self::endingWithSlash($_ENV["PIOL_ROOT_PATH"]);
             }
                         
@@ -104,6 +107,8 @@ namespace Mbcraft\Piol {
          * Checks if the specified filename is a valid filename.
          * 
          * @param string $filename the name to check
+         *
+         * @return true if the filename is valid, false otherwise
          * 
          * @api
          */
@@ -113,7 +118,7 @@ namespace Mbcraft\Piol {
                 if (($filename == $prefix) || (strpos($filename,$prefix.".")===0)) 
                         return false;
             }
-            $result = preg_match("/.*[\<\>\:\"\/\|\?\*]+.*/",$filename) || self::isCurrentDirName($filename) || self::isParentDirName($filename);
+            $result = preg_match('/.*[\<\>\:\"\/\|\?\*]+.*/',$filename) || self::isCurrentDirName($filename) || self::isParentDirName($filename);
             return !$result;
         }
         
@@ -162,7 +167,7 @@ namespace Mbcraft\Piol {
          * 
          * Returns the available disk space inside the piol root path.
          * 
-         * @return long the available number of bytes of disk space.
+         * @return int the available number of bytes of disk space.
          * 
          * @api
          */
@@ -174,7 +179,7 @@ namespace Mbcraft\Piol {
          * 
          * Returns the total disk space inside the piol root path.
          * 
-         * @return long the total number of bytes of disk space.
+         * @return int the total number of bytes of disk space.
          * 
          * @api
          */
@@ -187,22 +192,24 @@ namespace Mbcraft\Piol {
          * 
          * @param string $path The path to clear
          * 
-         * @return The cleaned path (no double slashes, absolute path).
+         * @return string The cleaned path (no double slashes, absolute path).
          */
         public static function getCleanedPath($path) {
             //SAFETY NET, rimuovo tutti i .. all'interno del percorso.
             $path = str_replace(DS . "..", "", $path);
             //pulizia doppie barre dai percorsi
             $path = str_replace("//", DS, $path);
-            
-            
+
             return $path;
         }
         
         /**
-         * Replaces quotes and double quotes inside path part with underscores.
+         * Replaces quotes, double quotes and a lot of other characters that can be problematic
+         * or requiring escape with underscore.
          * 
-         * @param type $path_part
+         * @param string $path_part
+         *
+         * @return string the filtered path name
          */
         public static function filterPathName($path_part) { 
             $path_part = str_replace('\ ','_',$path_part);
@@ -228,5 +235,3 @@ namespace Mbcraft\Piol {
     }
 
 }
-
-?>

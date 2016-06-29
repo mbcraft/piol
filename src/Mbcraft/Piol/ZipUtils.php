@@ -3,7 +3,9 @@
  * This file contains the ZipUtils class.
  */
 namespace Mbcraft\Piol {
-    
+
+    use ZipArchive;
+
     /**
      * This class provides utilities methods for extracting and compressing files
      * using the php 'zip' extension. It has only static methods.
@@ -68,8 +70,8 @@ namespace Mbcraft\Piol {
          * 
          * Recursively inflate the folder into che provided archive, using local_dir as a prefix for archived files.
          * 
-         * @param \Mbcraft\Piol\ZipArchive $zip_archive the current archive
-         * @param \Mbcraft\Piol\Dir $current_folder the current folder to compress
+         * @param ZipArchive $zip_archive the current archive
+         * @param Dir $current_folder the current folder to compress
          * @param string $local_dir the local dir prefix to use for compressed files.
          * 
          * @internal
@@ -91,4 +93,3 @@ namespace Mbcraft\Piol {
     }
 
 }
-?>

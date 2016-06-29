@@ -175,10 +175,10 @@ namespace Mbcraft\Piol {
          * 
          * Returns a storage using its extension as instance selector.
          * 
-         * @param type $folder folder of the storage, relative to the storage root, as string name.
-         * @param type $name name of the file, relative to the storage folder, as string name (without extension).
-         * @param type $extension the extension of the file, used to select the correct storage instance.
-         * @return \Mbcraft\Piol\Storage\PropertiesStorage|\Mbcraft\Piol\Storage\DataStorage|\Mbcraft\Piol\Storage\XMLStorage
+         * @param string $folder folder of the storage, relative to the storage root, as string name.
+         * @param string $name name of the file, relative to the storage folder, as string name (without extension).
+         * @param string $extension the extension of the file, used to select the correct storage instance.
+         * @return StorageDrivers\PropertiesStorage|StorageDrivers\DataStorage|StorageDrivers\XMLStorage
          * @throws \Mbcraft\Piol\IOException
          * 
          * @api
@@ -199,7 +199,7 @@ namespace Mbcraft\Piol {
          * 
          * @param string $folder folder of the storage, relative to the storage root, as string name.
          * @param string $name name of the file, relative to the storage folder, as string name (without extension).
-         * @return \Mbcraft\Piol\Storage\DataStorage the DataStorage instance.
+         * @return StorageDrivers\DataStorage the DataStorage instance.
          * 
          * @api
          */
@@ -213,7 +213,7 @@ namespace Mbcraft\Piol {
          * 
          * @param string $folder folder of the storage, relative to the storage root, as string name.
          * @param string $name name of the folder, relative to the storage folder, as string name (without extension).
-         * @return \Mbcraft\Piol\Storage\PropertiesStorage the PropertiesStorage instance.
+         * @return StorageDrivers\PropertiesStorage the PropertiesStorage instance.
          * 
          * @api
          */
@@ -227,7 +227,7 @@ namespace Mbcraft\Piol {
          * 
          * @param string $folder folder of the storage, relative to the storage root, as string name.
          * @param string $name name of the storage, relative to the storage folder, as string name (without extension).
-         * @return \Mbcraft\Piol\Storage\XMLStorage the XMLStorage instance.
+         * @return StorageDrivers\XMLStorage the XMLStorage instance.
          * 
          * @api
          */

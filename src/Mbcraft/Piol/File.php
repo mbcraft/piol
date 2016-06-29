@@ -6,7 +6,7 @@ namespace Mbcraft\Piol {
 
     /**
      * This class enable you to work with files, providing a lot of easy-to-use methods
-     * for dealing with name, extension, temporary files, content and content hashing, 
+     * for dealing with name, extension, temporary files, content and content hashing,
      * as well as methods for moving, renaming and copying the file around.
      */
     class File extends __FileSystemElement {
@@ -18,19 +18,19 @@ namespace Mbcraft\Piol {
 
         /**
          *
-         * @var string Contains the default temporary file path. 
+         * @var string Contains the default temporary file path.
          */
         private static $tmp_file_path = self::DEFAULT_TMP_PATH;
 
         /**
-         * 
+         *
          * Sets the directory for creating temporary files as \Piol\File instances.
          * It is relative to PIOL_ROOT_PATH since it is converted to a valid \Piol\Dir instance.
          * Defaults to PIOL_ROOT_PATH."/tmp/".
-         * 
+         *
          * @param \Mbcraft\Piol\Dir|string $dir The directory as a string path or Dir instance used for creating temporary files.
          * @throws \Mbcraft\Piol\IOException If the directory does not exists or does not have read and write permissions.
-         * 
+         *
          * @api
          */
         public static function setTmpFileDir($dir) {
@@ -42,11 +42,11 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Returns the current directory used for creating temporary files.
-         * 
+         *
          * @return \Mbcraft\Piol\Dir the directory for creating temporary files.
-         * 
+         *
          * @api
          */
         public static function getTmpFileDir() {
@@ -54,11 +54,11 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Construct a \Mbcraft\Piol\File instance.
-         * 
+         *
          * @param string $path The path of the file.
-         * 
+         *
          * @api
          */
         public function __construct($path) {
@@ -66,13 +66,13 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Ensures that a File object is used always returning a \Piol\File instance.
-         * 
+         *
          * @param \Mbcraft\Piol\File|string $file_or_path The string or path pointing to the file system file.
          * @return \Mbcraft\Piol\File The \Piol\File instance.
          * @throws \Mbcraft\Piol\IOException if the specified parameter is not a valid path or \Piol\File instance.
-         * 
+         *
          * @api
          */
         public static function asFile($file_or_path) {
@@ -84,26 +84,28 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Returns the name of this file, witout any extension parts. (after dots).
-         * 
+         *
          * @return string the name of this file.
-         * 
+         *
          * @api
          */
         public function getName() {
+
             $result = pathinfo($this->__full_path);
             return $result['filename'];
+            
         }
 
         /**
-         * 
+         *
          * Renames this file. Rename does not allow moving the file.
-         * 
+         *
          * @param string $new_name the new file name.
          * @return boolean true if the operation was succesfull, false otherwise
          * @throws \Mbcraft\Piol\IOException if the name contains invalid characters.
-         * 
+         *
          * @api
          */
         public function rename($new_name) {
@@ -117,46 +119,51 @@ namespace Mbcraft\Piol {
             if ($target_file->exists())
                 return false;
 
+
             return rename($this->__full_path, $target_file->getFullPath());
+
         }
 
         /**
-         * 
+         *
          * Returns the full file name without path components of this file.
          * eg. : "myfile.txt" or "phpdata.php.inc".
          *
          * @return string the full file name of this file.
-         * 
+         *
          * @api
          */
         public function getFullName() {
+            
             $result = pathinfo($this->__full_path);
             return $result['filename'] . "." . $result['extension'];
+            
         }
 
         /**
-         * 
+         *
          * Gets the last extension of this file.
-         * 
+         *
          * Eg. : "jpg" or "inc".
-         * 
+         *
          * @return string the last extension of this file.
-         * 
+         *
          * @api
          */
         public function getLastExtension() {
-            $result = pathinfo($this->__full_path);
 
+            $result = pathinfo($this->__full_path);
             return $result['extension'];
+            
         }
 
         /**
-         * 
+         *
          * Returns the full extension of this file, from the first dot (included) to the end
          * of the file name.
-         * 
+         *
          * @return string the full extension of this file, eg. ".php.inc".
-         * 
+         *
          * @api
          */
         public function getFullExtension() {
@@ -167,11 +174,11 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Returns the content of this file.
-         * 
+         *
          * @return string the full content of this file.
-         * 
+         *
          * @api
          */
         public function getContent() {
@@ -179,28 +186,33 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Returns the sha1 hash of the content of this file.
          * 
+         * @param string $hashing_alg The algorithm name to use for hashing the file content
+         *
          * @return string the sha1 hash content of this file.
-         * 
+         *
+         * @throws IOException if the algorithm is unknown or not supported.
+         *
          * @api
          */
-        public function getContentHash($hashing="sha1") {
-            if ($hashing=="sha1")
+        public function getContentHash($hashing_alg="sha1") {
+            if ($hashing_alg=="sha1")
                 return sha1_file($this->__full_path);
-            if ($hashing=="md5")
+            if ($hashing_alg=="md5")
                 return md5_file($this->__full_path);
 
+            throw new IOException("Content hashing algorithm not found : ".$hashing_alg);
         }
 
         /**
-         * 
+         *
          * Sets the content of this file, using an exclusive lock to prevent collisions.
-         * 
+         *
          * @param mixed $content a string, an array or a stream resource.
          * @return int the number of bytes written into the file, or FALSE if an error occurred.
-         * 
+         *
          * @api
          */
         public function setContent($content) {
@@ -208,12 +220,12 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Returns the size of this file.
-         * 
+         *
          * @return int the size of this file.
          * @throws \Mbcraft\Piol\IOException If this file doesn't exist.
-         * 
+         *
          * @api
          */
         public function getSize() {
@@ -225,11 +237,11 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Deletes this file.
-         * 
+         *
          * @return boolean if the delete operation was succesfull, false otherwise.
-         * 
+         *
          * @api
          */
         public function delete() {
@@ -237,12 +249,12 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Returns true if this file is empty, false otherwise.
-         * 
+         *
          * @return boolean true if this file is empty, false otherwise.
          * @throws \Mbcraft\Piol\IOException If this file doesn't exist.
-         * 
+         *
          * @api
          */
         public function isEmpty() {
@@ -253,13 +265,13 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Copies this file to the target folder.
-         * 
+         *
          * @param \Mbcraft\Piol\Dir|string $target_dir The target dir or string path to copy this file into.
          * @param string $new_name An optional new name for the copied file.
-         * @return boolean true if this operation was succesfull, false otherwise.
-         * 
+         * @return boolean true if this operation was successfull, false otherwise.
+         *
          * @api
          */
         public function copy($target_dir, $new_name = null) {
@@ -274,12 +286,12 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Matches the filename of this File with the given pattern.
-         * 
+         *
          * @param string $pattern A regexp pattern to match this filename
          * @return boolean true is the pattern matches, false otherwise.
-         * 
+         *
          * @api
          */
         public function filenameMatches($pattern) {
@@ -287,10 +299,10 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
           * Touches this file : if it does not exist it is created, if it already exists
          * its last access time is updated.
-         * 
+         *
          * @api
          */
         public function touch() {
@@ -298,13 +310,13 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
-         * Opens a FileReader for this file. 
+         *
+         * Opens a FileReader for this file.
          * @see \Mbcraft\Piol\FileReader
-         * 
+         *
          * @return \Mbcraft\Piol\FileReader|null the opened FileReader, or null if a shared lock cannot be obtained for this file.
          * @throws \Mbcraft\Piol\IOException If this file doesn't exist or can't be opened.
-         * 
+         *
          * @api
          */
         public function openReader() {
@@ -317,23 +329,23 @@ namespace Mbcraft\Piol {
                 throw new IOException("Impossibile aprire il reader al percorso : " . $this->__full_path . ".");
 
             if (flock($handle, LOCK_SH)) {
-                return new FileReader($handle,$this->getSize());
+                return new FileReader($handle);
             } else {
-                fclose($this->my_handle);
+                fclose($handle);
                 return null;
             }
         }
-        
+
         /**
-         * 
-         * Opens a FileWriter for this file used for logging. 
+         *
+         * Opens a FileWriter for this file used for logging.
          * If the file does not exists, it is created.
          * The writer is opened at the end of the file.
          * @see \Mbcraft\Piol\FileWriter for more informations.
-         * 
+         *
          * @return \Mbcraft\Piol\FileWriter|null The FileWriter, or null if it's not possible to lock this file for writing.
          * @throws \Mbcraft\Piol\IOException if it's not possible to open this file.
-         * 
+         *
          * @api
          */
         public function openLogWriter() {
@@ -345,21 +357,21 @@ namespace Mbcraft\Piol {
             if (flock($handle, LOCK_EX | LOCK_NB)) {
                 return new FileWriter($handle,$this->getSize());
             } else {
-                fclose($this->my_handle);
+                fclose($handle);
                 return null;
             }
         }
 
         /**
-         * 
+         *
          * Opens a FileWriter for this file. If the file does not exists, it is created.
          * @see \Mbcraft\Piol\FileWriter for more informations.
-         * 
+         *
          * @param boolean $erase If true, the file is emptyed before writing.
-         * 
+         *
          * @return \Mbcraft\Piol\FileWriter|null The FileWriter, or null if it's not possible to lock this file for writing.
          * @throws \Mbcraft\Piol\IOException if it's not possible to open this file.
-         * 
+         *
          * @api
          */
         public function openWriter($erase=false) {
@@ -372,17 +384,17 @@ namespace Mbcraft\Piol {
             if (flock($handle, LOCK_EX)) {
                 return new FileWriter($handle,$this->getSize());
             } else {
-                fclose($this->my_handle);
+                fclose($handle);
                 return null;
             }
         }
 
         /**
-         * 
+         *
          * Returns a valid path for an include or require directive for this element.
-         * 
+         *
          * @return string a valid include or require path for this element.
-         * 
+         *
          * @internal
          */
         private function getIncludePath() {
@@ -394,35 +406,37 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Includes the content of this file.
-         * 
+         *
          * @return mixed The result of the include operation from the php directive 'include'.
-         * 
+         *
          * @api
          */
         public function includeFile() {
+            /** @noinspection PhpIncludeInspection */
             return include($this->getIncludePath());
         }
 
         /**
-         * 
+         *
          * Includes the content of this file (using the 'include_once' php directive).
-         * 
+         *
          * @return mixed the result of the 'include_once' directive.
-         * 
+         *
          * @api
          */
         public function includeFileOnce() {
+            /** @noinspection PhpIncludeInspection */
             return include_once($this->getIncludePath());
         }
 
         /**
-         * 
+         *
          * Requires the content of this file once (using the 'require_once' php directive).
-         * 
+         *
          * @return mixed the result of the 'require_once' directive.
-         * 
+         *
          * @api
          */
         public function requireFileOnce() {
@@ -430,15 +444,16 @@ namespace Mbcraft\Piol {
 
             $included_file_path = substr($my_path, 1);
 
+            /** @noinspection PhpIncludeInspection */
             return require_once($included_file_path);
         }
 
         /**
-         * 
+         *
          * Creates a new temporary file.
-         * 
+         *
          * @return \Mbcraft\Piol\File The new temporary file instance.
-         * 
+         *
          * @api
          */
         public static function newTempFile() {
@@ -447,13 +462,13 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Returns an associative array of data about this file. The following fields are returned :
-         * full_path, path, name, extension, full_extension, type, mime_type, 
+         * full_path, path, name, extension, full_extension, type, mime_type,
          * size, size_auto, permissions.
-         * 
+         *
          * @return array an associative array of data about this file.
-         * 
+         *
          * @api
          */
         public function getInfo() {
@@ -485,12 +500,12 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Sets the permissions of this file. This operation is not guaranteed to succeed.
-         * 
+         *
          * @param string $rwx_permissions The 9 character [rwx-] permission string to set.
          * @return boolean if the operation was succesfull, false otherwise.
-         * 
+         *
          * @api
          */
         public function setPermissions($rwx_permissions) {
@@ -498,12 +513,12 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Checks if this element has the listed permissions.
-         * 
+         *
          * @param string $rwx_permissions The permissions to check.
          * @return boolean true if this file has all the permissions listed, false otherwise.
-         * 
+         *
          * @api
          */
         public function hasPermissions($rwx_permissions) {
@@ -511,10 +526,10 @@ namespace Mbcraft\Piol {
         }
 
         /**
-         * 
+         *
          * Returns the permissions of this file as a 9 character [rwx-] string.
          * @return string the permission string of this file.
-         * 
+         *
          * @api
          */
         public function getPermissions() {
@@ -525,4 +540,3 @@ namespace Mbcraft\Piol {
 
 }
 
-?>

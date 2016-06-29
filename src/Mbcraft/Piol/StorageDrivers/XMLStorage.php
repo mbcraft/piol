@@ -3,7 +3,7 @@
  * This file contains the XMLStorage class definition.
  */
 namespace Mbcraft\Piol\StorageDrivers {
-
+    
     use \Mbcraft\Piol\Storage;
     use \Mbcraft\Piol\StorageFactory;
     /**
@@ -31,25 +31,27 @@ namespace Mbcraft\Piol\StorageDrivers {
          * 
          * Reads all the xml data inside the storage, returning a SimpleXMLElement of it.
          * 
-         * @return \Mbcraft\Piol\Storage\SimpleXMLElement the data of this storage as a SimpleXMLElement.
+         * @return \SimpleXMLElement the data of this storage as a SimpleXMLElement.
          * 
          * @api
          */
         public function readXML() {
             $this->create();
-            return new SimpleXMLElement($this->storage_file->getContent());
+            $this->checkStorageFile();
+            return new \SimpleXMLElement($this->storage_file->getContent());
         }
 
         /**
          * 
          * Writes the xml data inside the storage.
          * 
-         * @param SimpleXMLElement $xml_data the document root of the xml data to write into the storage.
+         * @param \SimpleXMLElement $xml_data the document root of the xml data to write into the storage.
          * 
          * @api
          */
         public function saveXML($xml_data) {
             $this->create();
+            $this->checkStorageFile();
             $this->storage_file->setContent($xml_data->asXML());
         }
 
@@ -57,4 +59,3 @@ namespace Mbcraft\Piol\StorageDrivers {
 
 }
 
-?>
