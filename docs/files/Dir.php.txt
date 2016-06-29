@@ -26,7 +26,7 @@ namespace Mbcraft\Piol {
          * 
          * @internal
          */
-        const NO_HIDDEN_FILES_PATTERN = "/\A\..*\Z/";
+        const NO_HIDDEN_FILES_PATTERN = '/\A\..*\Z/';
         /**
          * Mode for showing hidden files for list methods.
          */
@@ -36,7 +36,7 @@ namespace Mbcraft\Piol {
          * 
          * @internal
          */
-        const SHOW_HIDDEN_FILES_PATTERN = "/\A[\.][\.]?\Z/";
+        const SHOW_HIDDEN_FILES_PATTERN = '/\A[\.][\.]?\Z/';
         
         /**
          * Constant value used as a parameter for list/find methods to list only files.
@@ -61,7 +61,7 @@ namespace Mbcraft\Piol {
          */
         public function __construct($path) {
             if ($path == "")
-                $new_path = DS;
+                $path = DS;
             //replace \ with /
             $new_path = str_replace("\\", DS, $path);
 
@@ -125,8 +125,11 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function getLevel() {
-            preg_match_all("/\//", $this->__path, $matches);
-            return count($matches[0]) - 1;
+
+                preg_match_all("/\//", $this->__path, $matches);
+                return count($matches[0]) - 1;
+ 
+
         }
 
         /**
@@ -137,10 +140,12 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function touch() {
-            if (!$this->exists()) {
-                @mkdir($this->__full_path, self::getDefaultPermissionsOctal(), true);
-            } else
-                touch($this->__full_path);
+ 
+                if (!$this->exists()) {
+                    @mkdir($this->__full_path, self::getDefaultPermissionsOctal(), true);
+                } else
+                    touch($this->__full_path);
+
         }
 
         /**
@@ -154,18 +159,19 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function rename($new_name) {
-            
-            FileSystemUtils::checkValidFilename($new_name);
 
-            $parent_dir = $this->getParentDir();
 
-            $target_path = $parent_dir->getPath() . "/" . $new_name;
+                FileSystemUtils::checkValidFilename($new_name);
 
-            $target_dir = new Dir($target_path);
-            if ($target_dir->exists())
-                return false;
+                $parent_dir = $this->getParentDir();
 
-            return rename($this->__full_path, $target_dir->getFullPath());
+                $target_path = $parent_dir->getPath() . "/" . $new_name;
+
+                $target_dir = new Dir($target_path);
+                if ($target_dir->exists())
+                    return false;
+                return rename($this->__full_path, $target_dir->getFullPath());
+  
         }
         
         /**
@@ -191,7 +197,8 @@ namespace Mbcraft\Piol {
          */
         public function getName() {
 
-            return basename($this->__full_path);
+                return basename($this->__full_path);
+   
         }
 
         /**
@@ -244,25 +251,27 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function newSubdir($name) {
-            FileSystemUtils::checkValidFilename($name);
-            
-            if (FileSystemUtils::isDir($this->__path . DS . $name)) {
-                //directory already exists
-                //echo "Directory already exists : ".$this->__full_path."/".$name;
-                return new Dir($this->__path . DS . $name);
-            }
-            if (FileSystemUtils::isFile($this->__path . DS . $name)) {
-                throw new IOException();
-            }
-            //directory or files do not exists
 
-            $result = @mkdir($this->__full_path . $name, __FileSystemElement::getDefaultPermissionsOctal(), true);
+                FileSystemUtils::checkValidFilename($name);
 
-            if ($result == true)
-                return new Dir($this->__path . $name);
-            else {
-                throw new IOException("Unable to create dir : " . $this->__full_path . $name);
-            }
+                if (FileSystemUtils::isDir($this->__path . DS . $name)) {
+                    //directory already exists
+                    //echo "Directory already exists : ".$this->__full_path."/".$name;
+                    return new Dir($this->__path . DS . $name);
+                }
+                if (FileSystemUtils::isFile($this->__path . DS . $name)) {
+                    throw new IOException("The specified name is an already existing file");
+                }
+                //directory or files do not exists
+
+                $result = @mkdir($this->__full_path . $name, __FileSystemElement::getDefaultPermissionsOctal(), true);
+
+                if ($result == true)
+                    return new Dir($this->__path . $name);
+                else {
+                    throw new IOException("Unable to create dir : " . $this->__full_path . $name);
+                }
+
         }
 
         /**
@@ -286,7 +295,7 @@ namespace Mbcraft\Piol {
          * 
          * List all the files inside this directory, excluding the ones that matches at least one of the specified patterns.
          * 
-         * @param array $myExcludes an array of regexp patterns used to match excluded elements against their full name.
+         * @param mixed $myExcludes an array of regexp patterns used to match excluded elements against their full name.
          * @param bool $deep if true searches inside all the contained folders, otherwise only in this one.
          * @return array an array of two arrays, with all the files that matched and all the directories that matched, 
          * as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.
@@ -302,7 +311,7 @@ namespace Mbcraft\Piol {
          * 
          * List all the folders inside this directory, excluding the ones that matches at least one of the specified patterns.
          * 
-         * @param array $myExcludes an array of regexp patterns used to match excluded elements against their full name.
+         * @param mixed $myExcludes an array of regexp patterns used to match excluded elements against their full name.
          * @param bool $deep if true searches inside all the contained folders, otherwise only in this one.
          * @return array an array of two arrays, with all the files that matched and all the directories that matched, 
          * as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.
@@ -320,9 +329,9 @@ namespace Mbcraft\Piol {
          * 
          * @param int $mode Only the following values, specified as constants inside this class, can be used :
          *  MODE_FILES_ONLY, MODE_FOLDERS_ONLY, MODE_FILES_AND_FOLDERS.
-         * @param array $myExcludes an array of regexp patterns used to match excluded elements against their full name.
+         * @param mixed $myExcludes an array of regexp patterns used to match excluded elements against their full name.
          * @param bool $deep if true searches inside all the contained folders, otherwise only in this one.
-         * @return type array an array of two arrays, with all the files that matched and all the directories that matched, 
+         * @return array an array of two arrays, with all the files that matched and all the directories that matched, 
          * as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.
          * 
          * @api
@@ -339,7 +348,7 @@ namespace Mbcraft\Piol {
                 $excludesSet = true;
                 $excludes = array(self::SHOW_HIDDEN_FILES_PATTERN);
             }
-            if (!$excludesSet)
+            if (!isset($excludes) || !$excludesSet)
                 $excludes = $myExcludes;
 
             $all_results = scandir($this->__full_path);
@@ -392,7 +401,7 @@ namespace Mbcraft\Piol {
          * @param string $string the string used for comparison with the starting part of the full name of the
          * nested elements.
          * @param bool $deep if true searches inside all the contained folders, otherwise only in this one.
-         * @return type array an array of two arrays, with all the files that matched and all the directories that matched, 
+         * @return array an array of two arrays, with all the files that matched and all the directories that matched, 
          * as a \Mbcraft\Piol\File and \Mbcraft\Piol\Dir instances.
          * 
          * @api
@@ -515,8 +524,8 @@ namespace Mbcraft\Piol {
          * 
          * Creates a new Directory instance inside this directory.
          * 
-         * @param type $name The name for this directory.
-         * @return \Mbcraft\Piol\Dir The file instance.
+         * @param string $name The name for this directory.
+         * @return Dir The file instance.
          */
         public function newDir($name) {
             FileSystemUtils::checkValidFilename($name);
@@ -541,7 +550,7 @@ namespace Mbcraft\Piol {
 
         /**
          * 
-         * Deletes this folder.
+         * Deletes this folder and all its content, recursively.
          * 
          * @return boolean if the delete operation was fully successfull, false otherwise.
          * 
@@ -569,7 +578,7 @@ namespace Mbcraft\Piol {
         public function hasOnlyOneSubdir() {
             $content = $this->listElements();
             if (count($content[0]) == 0 && count($content[1]) == 1) {
-                $dir_elem = $content[1][0];
+                __FileSystemElement:$dir_elem = $content[1][0];
                 if ($dir_elem->isDir())
                     return true;
             }
@@ -586,9 +595,10 @@ namespace Mbcraft\Piol {
          */
         public function hasOnlyOneFile() {
             $content = $this->listElements();
-            if (count($content[0]) == 0 && count($content[1]) == 1) {
-                $dir_elem = $content[1][0];
-                if ($dir_elem->isFile())
+            if (count($content[0]) == 1 && count($content[1]) == 0) {
+                $file_elem = $content[0][0];
+                
+                if ($file_elem->isFile())
                     return true;
             }
             return false;
@@ -623,6 +633,7 @@ namespace Mbcraft\Piol {
                     return $dir_elem;
                 throw new IOException("L'elemento presente all'interno della directory non è una cartella.");
             }
+
             throw new IOException("Errore nell'esecuzione del metodo getUniqueSubdir. Numero elementi:" . count($content));
         }
         
@@ -637,8 +648,9 @@ namespace Mbcraft\Piol {
          */
         public function getUniqueFile() {
             $content = $this->listElements();
-            if (count($content[0]) == 0 && count($content[1]) == 1) {
-                $file_elem = $content[1][0];
+            
+            if (count($content[0]) == 1 && count($content[1]) == 0) {
+                $file_elem = $content[0][0];
                 if ($file_elem->isFile())
                     return $file_elem;
                 throw new IOException("L'elemento presente all'interno della directory non è un file.");
@@ -697,6 +709,8 @@ namespace Mbcraft\Piol {
          * @param \Mbcraft\Piol\File|\Mbcraft\Piol\Dir $child
          * @return boolean true if the parameter is a direct child of this directory, false otherwise.
          * 
+         * @throws IOException if the child is not a valid File or Dir instance.
+         * 
          * @api
          */
         public function isParentOf($child) {
@@ -747,21 +761,21 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function setPermissions($rwx_permissions, $recursive = false) {
-            $r = $this->setPermissionsRwx($rwx_permissions);
+            $result = $this->setPermissionsRwx($rwx_permissions);
 
             if ($recursive) {
                 foreach ($this->listFolders() as $folder) {
                     $rr = Dir::asDir($folder)->setPermissions($rwx_permissions, $recursive);
-                    $r = $r && $r;
+                    $result &= $rr;
                 }
 
                 foreach ($this->listFiles() as $file) {
                     $rr = File::asFile($file)->setPermissionsRwx($rwx_permissions);
-                    $r = $r && $r;
+                    $result &= $rr;
                 }
             }
 
-            return $r;
+            return $result;
         }
 
         /**
@@ -805,4 +819,4 @@ namespace Mbcraft\Piol {
 
 }
 
-?>
+

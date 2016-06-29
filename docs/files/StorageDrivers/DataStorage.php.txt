@@ -3,7 +3,7 @@
  * This file contains the DataStorage class definition.
  */
 namespace Mbcraft\Piol\StorageDrivers {
-
+    
     use \Mbcraft\Piol\Storage;
     use \Mbcraft\Piol\StorageFactory;
         
@@ -38,6 +38,7 @@ namespace Mbcraft\Piol\StorageDrivers {
          */
         public function readData() {
             $this->create();
+            $this->checkStorageFile();
             return $this->storage_file->getContent();
         }
 
@@ -45,13 +46,14 @@ namespace Mbcraft\Piol\StorageDrivers {
          * 
          * Saves all the data inside the storage.
          * 
-         * @param type $data the data to write into the storage, can be a string, an array or a stream resource.
+         * @param mixed $data the data to write into the storage, can be a string, an array or a stream resource.
          * @return int the number of bytes written into the file, or FALSE if an error occurred.
          * 
          * @api
          */
         public function saveData($data) {
             $this->create();
+            $this->checkStorageFile();
             return $this->storage_file->setContent($data);
         }
 
@@ -59,4 +61,4 @@ namespace Mbcraft\Piol\StorageDrivers {
 
 }
  
-?>
+

@@ -13,12 +13,20 @@ use Mbcraft\Piol\File;
  */
 class JavaXmlPropertiesUtils extends PiolObject {
 
-    const XML_PRELUDE = '<?xml version="1.0" encoding="UTF-8"?>
-
+    const XML_PRELUDE = <<<'END_XML_PRELUDE'
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties
-  SYSTEM "http://java.sun.com/dtd/properties.dtd">';
-    const XML_ROOT_OPEN = '<properties>';
-    const XML_ROOT_CLOSE = '</properties>';
+  SYSTEM "http://java.sun.com/dtd/properties.dtd">
+END_XML_PRELUDE;
+    
+    const XML_ROOT_OPEN = <<<'TAG'
+<properties>
+TAG;
+
+    const XML_ROOT_CLOSE = <<<'TAG'
+</properties>
+TAG;
+
 
     /**
      * Adds entries to a java xml properties file.
@@ -68,7 +76,8 @@ class JavaXmlPropertiesUtils extends PiolObject {
      */
     public static function readFromString($string) {
 
-        $xml = \DOMDocument::loadXML($string);
+        $xml = new \DOMDocument();
+        $xml->loadXML($string);
 
         $result = [];
 
@@ -117,7 +126,7 @@ class JavaXmlPropertiesUtils extends PiolObject {
             $xn->addChild("entry", htmlspecialchars($value,ENT_XML1))->addAttribute("key",htmlspecialchars($key,ENT_XML1));
         }
         //LIBXML_NOXMLDECL is not supported, so replace the xml declaration to include also the dtd
-        return preg_replace("/\<\?.*\?\>/", self::XML_PRELUDE, $xn->asXML());
+        return preg_replace('/\<\?.*\?\>/', self::XML_PRELUDE, $xn->asXML());
         
     }
 

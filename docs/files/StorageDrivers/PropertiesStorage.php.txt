@@ -3,7 +3,7 @@
  * This file contains the PropertiesStorage class definition.
  */
 namespace Mbcraft\Piol\StorageDrivers {
-
+    
     use \Mbcraft\Piol\Storage;
     use \Mbcraft\Piol\StorageFactory;
     use \Mbcraft\Piol\Utils\IniPropertiesUtils;
@@ -40,6 +40,7 @@ namespace Mbcraft\Piol\StorageDrivers {
          */
         public function readAll() {
             $this->create();
+            $this->checkStorageFile();
             return IniPropertiesUtils::readFromFile($this->storage_file, true);
         }
 
@@ -55,6 +56,7 @@ namespace Mbcraft\Piol\StorageDrivers {
          */
         public function saveAll($props) {
             $this->create();
+            $this->checkStorageFile();
             IniPropertiesUtils::saveToFile($this->storage_file, $props, true);
         }
 
@@ -69,6 +71,7 @@ namespace Mbcraft\Piol\StorageDrivers {
          */
         public function add($entries) {
             $this->create();
+            $this->checkStorageFile();
             IniPropertiesUtils::addEntriesToFile($this->storage_file, true, $entries);
         }
 
@@ -83,6 +86,7 @@ namespace Mbcraft\Piol\StorageDrivers {
          */
         public function remove($entries) {
             $this->create();
+            $this->checkStorageFile();
             IniPropertiesUtils::removeEntriesFromFile($this->storage_file, true, $entries);
         }
 
@@ -90,4 +94,4 @@ namespace Mbcraft\Piol\StorageDrivers {
 
 }
 
-?>
+

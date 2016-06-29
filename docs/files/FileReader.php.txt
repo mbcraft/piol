@@ -22,7 +22,7 @@ namespace Mbcraft\Piol {
         private $ch = null;
         /**
          * 
-         * @var handle The file handle for this FileReader, as returned from the fopen call. 
+         * @var mixed The file handle for this FileReader, as returned from the fopen call. 
          * 
          * @internal
          */
@@ -45,13 +45,17 @@ namespace Mbcraft\Piol {
          * to call this constructor since instances of FileReader are obtained throught File::openReader()
          * method.
          * 
-         * @param handle $handle The handle to use for reading data from this file.
+         * @param mixed $handle The handle to use for reading data from this file.
+         *
+         * @throws IOException if the handle is null
          * 
          * @internal
          */
-        function __construct($handle,$size) {
+        function __construct($handle) {
+            if ($handle==null)
+                throw new IOException("The handle is null");
             $this->my_handle = $handle;
-            $this->current_size = $size;
+            $this->current_size = fstat($handle)["size"];
             $this->open = true;
         }
         
@@ -71,7 +75,7 @@ namespace Mbcraft\Piol {
          * 
          * @internal
          */
-        protected function checkClosed() {
+        protected function checkNotClosed() {
             if (!$this->open)
                 throw new IOException("Lo stream risulta essere chiuso!!");
         }
@@ -98,7 +102,7 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function scanf($format) {
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             return fscanf($this->my_handle, $format);
         }
@@ -113,7 +117,7 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function read($length) {
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             return fread($this->my_handle, $length);
         }
@@ -128,7 +132,7 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function readLine() {
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             $line = "";
 
@@ -150,7 +154,10 @@ namespace Mbcraft\Piol {
 
                     return $line;
                 }
+
             } while (true);
+
+            throw new IOException("Should never happen ...");
         }
 
         /**
@@ -173,7 +180,7 @@ namespace Mbcraft\Piol {
          * Returns the next character readed from the current position. If a character
          * is set in the push back cache, return that character instead.
          * 
-         * @return The next readed character.
+         * @return string The next readed character.
          * 
          * @internal
          */
@@ -198,7 +205,7 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function readChar() {
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             return $this->nextChar();
         }
@@ -237,7 +244,7 @@ namespace Mbcraft\Piol {
             $this->checkChar($enclosure, "The enclosure is not a valid character.");
             $this->checkChar($escape, "The escape is not a valid character.");
             
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             $line = $this->readLine();
 
@@ -297,7 +304,7 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function reset() {
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             return rewind($this->my_handle);
         }
@@ -306,14 +313,14 @@ namespace Mbcraft\Piol {
          * 
          * Moves the read pointer at the specified location.
          * 
-         * @param long $location The location at which point the reader.
+         * @param int $location The location at which point the reader.
          * @return boolean true if the operation succeded, false otherwise.
          * @throws \Mbcraft\Piol\IOException if this reader is already closed. 
          * 
          * @api
          */
         public function seek($location) {
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             return fseek($this->my_handle, $location, SEEK_SET)==0;
         }
@@ -322,13 +329,13 @@ namespace Mbcraft\Piol {
          * 
          * Skip bytes from the current position of the stream.
          * 
-         * @param long $offset The number of bytes to skip.
+         * @param int $offset The number of bytes to skip.
          * @throws \Mbcraft\Piol\IOException if this reader is already closed.
          * 
          * @api
          */
         public function skip($offset) {
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             fseek($this->my_handle, $offset, SEEK_CUR);
         }
@@ -337,13 +344,13 @@ namespace Mbcraft\Piol {
          * 
          * Returns the current position inside the opened file.
          * 
-         * @return long the byte index of the reader inside the file.
-         * @throws \Mbcraft\Piol\IOException if this reader is already closed.
+         * @return int the byte index of the reader inside the file.
+         * @throws IOException if this reader is already closed.
          * 
          * @api
          */
         public function pos() {
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             return ftell($this->my_handle);
         }
@@ -359,7 +366,7 @@ namespace Mbcraft\Piol {
          * @api
          */
         public function isEndOfStream() {
-            $this->checkClosed();
+            $this->checkNotClosed();
 
             return ($this->available()==0 || feof($this->my_handle));
         }
@@ -384,21 +391,8 @@ namespace Mbcraft\Piol {
                 throw new IOException("Reader/Writer already closed.");
         }
 
-
-        /**
-         * 
-         * Returns the file handle of this file, as returned from the fopen call.
-         * 
-         * @return handle the file handle of this file.
-         * 
-         * @internal
-         */
-        private function getHandler() {
-            return $this->my_handle;
-        }
-
     }
 
 }
 
-?>
+

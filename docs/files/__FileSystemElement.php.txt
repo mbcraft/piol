@@ -332,7 +332,7 @@ namespace Mbcraft\Piol {
          * 
          * @internal
          */
-        protected function setPermissionsRwx($rwx_permissions) {
+        public function setPermissionsRwx($rwx_permissions) {
             $octal_permissions = self::toOctalPermissions($rwx_permissions);
 
             $result = chmod($this->__full_path, $octal_permissions);
@@ -514,7 +514,7 @@ namespace Mbcraft\Piol {
          * 
          * @param string $storage_type The type of storage to get.
          * 
-         * @return \Mbcraft\Piol\Storage\PropertiesStorage the properties storage for this element.
+         * @return StorageDrivers\PropertiesStorage the properties storage for this element.
          * 
          * @api
          */
@@ -646,28 +646,57 @@ namespace Mbcraft\Piol {
             $parent_path = str_replace("\\", DS, $parent_path);
             return new Dir($parent_path);
         }
-        
+
+        /**
+         * Sets the owner of this fs element.
+         *
+         * @param string $owner The owner name, as string
+         */
         public function setOwner($owner) {
             chown($this->__full_path, $owner);
         }
-        
+
+        /**
+         * Returns the owner of this file system element.
+         *
+         * @return string the owner user name
+         */
         public function getOwner() {
             $file_info = stat($this->__full_path);
             $user_info = posix_getpwuid($file_info["uid"]);
             return $user_info["name"];
         }
-        
+
+        /**
+         * Returns the group this file system element belongs to.
+         *
+         * @return string the string group name
+         */
         public function getGroup() {
             $group_id = filegroup($this->__full_path);
             $group_info = posix_getgrgid($group_id);
             return $group_info["name"];
         }
-        
+
+        /**
+         * Sets the group owner of this file system element.
+         *
+         * @param string $group the group name
+         */
         public function setGroup($group) {
             chgrp($this->__full_path, $group);
         }
 
+        /**
+         * Checks if a file system element has the specified permissions.
+         *
+         * @param string $perm_string The permission string
+         *
+         * @return true if the element has the specified permissions, false otherwise
+         */
+        abstract function hasPermissions($perm_string);
+        
     }
 
 }
-?>
+

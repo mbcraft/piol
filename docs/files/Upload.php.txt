@@ -27,7 +27,7 @@ namespace Mbcraft\Piol {
         private $my_type;
         /**
          * 
-         * @var type Contains the upload temporary file name
+         * @var string Contains the upload temporary file name
          * 
          * @internal
          */
@@ -46,7 +46,14 @@ namespace Mbcraft\Piol {
          * @internal
          */
         private $my_size;
-        
+
+        /**
+         * @var string the temporary name
+         *
+         * @internal
+         */
+        private $tmp_name;
+
         /**
          * Build an Upload instance. You should not usually call this method, but use the UploadUtils fetch methods instead.
          * 

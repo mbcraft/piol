@@ -43,18 +43,25 @@ namespace Mbcraft\Piol {
         protected $storage_file;
 
         /**
+         * @var string the type of the storage
+         *
+         * @internal
+         */
+        private $storage_type;
+
+        /**
          * 
          * Construct a Storage instance placed inside the specified folder with the specified name,
          * of the specified type.
          * 
          * @param string $folder the folder name, as a string.
          * @param string $name the storage file name, as a string.
-         * @param string $storage_type the storage file, actually the file extension.
+         * @param string $storage_t the storage file, actually the file extension.
          * @throws \Mbcraft\Piol\IOException if the parameters does not point to a valid storage location.
          * 
          * @internal
          */
-        protected function __construct($folder, $name, $storage_type) {
+        protected function __construct($folder, $name, $storage_t) {
             /*
               if (!preg_match(self::VALID_FOLDER_AND_STORAGE_NAME_PATTERN,$folder))
               throw new IOException("Nome del folder non valido!");
@@ -68,15 +75,15 @@ namespace Mbcraft\Piol {
 
             $storage_dir = StorageFactory::getProtectedStorage();
 
-            $this->storage_type = $storage_type;
+            $this->storage_type = $storage_t;
             $p = $storage_dir->getPath() . $folder . DS;
             
             $this->storage_dir = new Dir($p);
 
-            if (!FileSystemUtils::isValidFilename($name .".".$storage_type))
+            if (!FileSystemUtils::isValidFilename($name .".".$storage_t))
                 throw new IOException("The specified string is not a valid filename.");
             
-            $p = $storage_dir->getPath() . $folder . DS . $name. DOT . $storage_type;
+            $p = $storage_dir->getPath() . $folder . DS . $name. DOT . $storage_t;
             $this->storage_file = new File($p);
         }
 
@@ -151,7 +158,18 @@ namespace Mbcraft\Piol {
             $this->storage_file->delete();
         }
 
+        /**
+         * Checks that the storage file is not empty
+         *
+         * @throws IOException If it is
+         *
+         * @internal
+         */
+        protected function checkStorageFile() {
+            if (empty($this->storage_file)) throw new IOException("The storage file is not valid");
+        }
+
     }
 
 }
-?>
+
