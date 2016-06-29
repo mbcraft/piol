@@ -31,6 +31,8 @@ run_tests.sh        <-- test runner for linux/unix
 
 run_tests.php       <-- web test runner
 
+make_docs.php       <-- regenerate docs after code changes
+
 
 ## Installation & Usage : 
 
