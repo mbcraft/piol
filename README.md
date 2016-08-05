@@ -73,11 +73,12 @@ On Windows permission tests are disabled due to missing support for permission c
 
 - Easy File and Directory management with root jail feature (PIOL_ROOT_PATH) that
     can be set before using the library or is set automatically. Common methods for working with
-files and directories, reading and writing file data and even csv data.
+files and directories, reading and writing file data.
 Useful features like rename, delete, move files and directories, directory visit, permission get
 and set (Linux only) and much more.
 - Zip creation and extraction (zip library required inside php) with ZipUtils class.
-- Properties file management with PropertiesUtils class.
+- Properties management in ini and java xml formats.
+- Csv reader and writer.
 - Secure storage management : store files inside a protected directory.
     Save data as string, properties or xml.
 - Upload handler : easy handle file uploads with UploadUtils class, even multiple file uploads are
@@ -92,7 +93,7 @@ with your favorite browser.
 
 ## Info :
 
-Current version : 2.0.1
+Current version : 2.1.0
 
 ## Latest changes :
 
@@ -103,6 +104,8 @@ Current version : 2.0.1
 - Refactored the package of some classes.
 - Fixed class names in documentation.
 - Add openWriter($erase) parameter.
+- Added CsvUtils class
+- Added IReader and IWriter interfaces
 
 ## Roadmap :
 
