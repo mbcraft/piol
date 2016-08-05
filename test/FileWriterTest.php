@@ -3,6 +3,7 @@
 use Mbcraft\Piol\File;
 use Mbcraft\Piol\FileWriter;
 use Mbcraft\Piol\IOException;
+use Mbcraft\Piol\Utils\CsvUtils;
 
 class FileWriterTest extends PHPUnit_Framework_TestCase
 {
@@ -95,8 +96,9 @@ class FileWriterTest extends PHPUnit_Framework_TestCase
         $w = $f->openWriter();
         
         $w->writeln("ID;Title;Count");
-        $w->writeCSV(array(0,"La biblioteca",16.5),",","\"");
-        $w->writeCSV(array(1,"Il castello 'v', la torre 'r' e il cortile ...",18.3),",","\"");
+
+        CsvUtils::write($w,array(0,"La biblioteca",16.5),",","\"");
+        CsvUtils::write($w,array(1,"Il castello 'v', la torre 'r' e il cortile ...",18.3),",","\"");
         $w->close();
         
         $r = $f->openReader();
@@ -104,8 +106,8 @@ class FileWriterTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($r->isEndOfStream(),"Lo stream non è terminato!!");
         
         $r->readLine();
-        $d1 = $r->readCSV();
-        $d2 = $r->readCSV();
+        $d1 = CsvUtils::read($r);
+        $d2 = CsvUtils::read($r);
         
         $this->assertEquals(0,$d1[0],"Il valore letto non corrisponde!!");
         $this->assertEquals("La biblioteca",$d1[1],"Il valore letto non corrisponde!!");
@@ -115,7 +117,7 @@ class FileWriterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("Il castello 'v', la torre 'r' e il cortile ...",$d2[1],"Il valore letto non corrisponde!!");
         $this->assertEquals(18.3,$d2[2],"Il valore letto non corrisponde!!");
         
-        $d3 = $r->readCSV();
+        $d3 = CsvUtils::read($r);
         $this->assertNull($d3,"Il valore letto non è null alla fine dello stream!!");
         $this->assertTrue($r->isEndOfStream(),"Lo stream non è terminato!!");
         

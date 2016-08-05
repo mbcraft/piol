@@ -3,6 +3,7 @@
 use Mbcraft\Piol\IOException;
 use Mbcraft\Piol\File;
 use Mbcraft\Piol\FileReader;
+use Mbcraft\Piol\Utils\CsvUtils;
 
 class FileReaderTest extends PHPUnit_Framework_TestCase
 {
@@ -181,7 +182,7 @@ class FileReaderTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals("policyID,statecode,county,eq_site_limit,hu_site_limit,fl_site_limit,fr_site_limit,tiv_2011,tiv_2012,eq_site_deductible,hu_site_deductible,fl_site_deductible,fr_site_deductible,point_latitude,point_longitude,line,construction,point_granularity",$header,"L'intestazione del file csv non corrisponde!!");
         
-        $read_values = $reader->readCSV();
+        $read_values = CsvUtils::read($reader);
         
         $this->assertEquals(count($values),count($read_values),"Il numero dei valori letti non corrisponde!!");
         
@@ -199,21 +200,21 @@ class FileReaderTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals("id;nome;cognome;descrizione",$header,"Le intestazioni del csv non corrispondono!!");
         
-        $values = $reader->readCSV();
+        $values = CsvUtils::read($reader);
         
         $this->assertEquals("1",$values[0],"Il valore letto non corrisponde!!");
         $this->assertEquals("marco",$values[1],"Il valore letto non corrisponde!!");
         $this->assertEquals("bagnaresi",$values[2],"Il valore letto non corrisponde!!");
         $this->assertEquals("programmatore, curioso",$values[3],"Il valore letto non corrisponde!!");
         
-        $values = $reader->readCSV();
+        $values = CsvUtils::read($reader);
         
         $this->assertEquals("2",$values[0],"Il valore letto non corrisponde!!");
         $this->assertEquals("federica",$values[1],"Il valore letto non corrisponde!!");
         $this->assertEquals("amarisse",$values[2],"Il valore letto non corrisponde!!");
         $this->assertEquals("segretaria, \"puccettosa\"",$values[3],"Il valore letto non corrisponde!!");
         
-        $values = $reader->readCSV();
+        $values = CsvUtils::read($reader);
         
         $this->assertEquals("3",$values[0],"Il valore letto non corrisponde!!");
         $this->assertEquals("stefano",$values[1],"Il valore letto non corrisponde!!");
