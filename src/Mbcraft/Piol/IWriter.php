@@ -1,0 +1,109 @@
+<?php
+
+namespace Mbcraft\Piol {
+
+    /**
+     * Interface IWriter
+     *
+     * This interface is used to model a writer. Extends IReader.
+     *
+     * @package Mbcraft\Piol
+     */
+    interface IWriter extends IReader {
+
+        /**
+         *
+         * Sets the default line ending mode for all writers.
+         *
+         * @param boolean $default_line_ending_crlf true if CRLF should be used, false for CR.
+         *
+         * @api
+         */
+        static function setDefaultLineEndingModeCrlf($default_line_ending_crlf);
+
+        /**
+         *
+         * Gets the default line ending mode for all writers.
+         *
+         * @return boolean true if CRLF should be used, false for CR.
+         *
+         * @api
+         */
+        static function getDefaultLineEndingModeCrlf();
+        /**
+         *
+         * Sets the line ending mode for this writer.
+         *
+         * @param boolean $line_ending_mode true for CRLF, false for CR.
+         *
+         * @api
+         */
+        function setLineEndingModeCrlf($line_ending_mode);
+
+        /**
+         *
+         * Gets the line ending mode for this writer. If not set uses the default.
+         *
+         * @return boolean returns true if CRLF should be used, false for CR.
+         *
+         * @api
+         */
+        function getLineEndingModeCrlf();
+
+        /**
+         *
+         * Writes values to this writer following the printf rules. All additional parameters
+         * after 'format' are treated as data.
+         *
+         * @param mixed $format The format to use, following the printf rules.
+         *
+         * @return int the actual fprintf result.
+         *
+         * @throws \Mbcraft\Piol\IOException if this writer is already closed.
+         *
+         * @api
+         */
+        function printf($format);
+
+        /**
+         *
+         * Writes a string inside this stream at the current position. No characters are added.
+         *
+         * @param string $string The string to write.
+         * @return int the number of bytes written, or a negative value if an error occurred.
+         *
+         * @throws \Mbcraft\Piol\IOException if this writer is already closed.
+         *
+         * @api
+         */
+        function write($string);
+
+        /**
+         *
+         * Writes a string in this stream, ending it with CRLF characters.
+         *
+         * @param string $string the string to write
+         *
+         * @return int the fwrite result code
+         *
+         * @throws \Mbcraft\Piol\IOException if this writer is already closed.
+         *
+         * @api
+         */
+        function writeln($string);
+
+        /**
+         *
+         * Truncate this stream at the specified size.
+         *
+         * @param int $size the maximum size of the data.
+         * @return true if the operation was successful, false otherwise.
+         *
+         * @throws \Mbcraft\Piol\IOException if this writer is already closed.
+         *
+         * @api
+         */
+        function truncate($size);
+    }
+
+}
