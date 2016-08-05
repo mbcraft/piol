@@ -11,7 +11,7 @@ namespace Mbcraft\Piol {
      * 
      * To obtain a FileReader for a given file use the File::openReader() instance method.
      */
-    class FileReader extends PiolObject {
+    class FileReader extends PiolObject implements IReader {
 
         /**
          * 
@@ -208,90 +208,6 @@ namespace Mbcraft\Piol {
             $this->checkNotClosed();
 
             return $this->nextChar();
-        }
-        
-        /**
-         * 
-         * Checks if the parameter is a string of exactly one character.
-         * 
-         * @param string $ch The string to check
-         * @param string $message message to use for exception
-         * @return boolean true if the parameter is a character, false otherwise.
-         * @throws \Mbcraft\Piol\IOException If  the parameter is not a string of one character.
-         * 
-         * @internal
-         */
-        protected function checkChar($ch,$message) {
-            if (is_string($ch) && strlen($ch)===1) return true;
-            else
-                throw new IOException($message);
-        }
-
-        /**
-         * 
-         * Reads a line from this file as a CSV (comma separated value) entry.
-         * 
-         * @param string $delimiter The delimiter char used, defaults to ','.
-         * @param string $enclosure The enclosure char used, defaults to '"'.
-         * @param string $escape The escape char used, defaults to '\'.
-         * @return array an array of ordered fields readed.
-         * @throws \Mbcraft\Piol\IOException If the parameters are not valid or the entry contains unexpected characters.
-         * 
-         * @api
-         */
-        public function readCSV($delimiter = ",", $enclosure = '"', $escape = '\\') {
-            $this->checkChar($delimiter, "The delimiter is not a valid character.");
-            $this->checkChar($enclosure, "The enclosure is not a valid character.");
-            $this->checkChar($escape, "The escape is not a valid character.");
-            
-            $this->checkNotClosed();
-
-            $line = $this->readLine();
-
-            if (strlen(trim($line)) === 0)
-                return null;
-
-            $fields = array();
-            $current_field = "";
-            $i = 0;
-            $escaped = false;
-            $e = 0;
-            while ($i < strlen($line)) {
-                $c = $line[$i++];
-                //echo $c."\n";
-                if ($escaped) {
-                    $current_field .= $c;
-                    $escaped = false;
-                    continue;
-                }
-                if ($c === $escape) {
-                    $escaped = true;
-                    continue;
-                }
-                if (($c === $enclosure) && (strlen($current_field) === 0) && ($e === 0)) {
-                    $e++;
-                    //skip
-                    continue;
-                }
-                if (($c === $enclosure) && ($e === 1)) {
-                    $e++;
-                    //skip
-                    continue;
-                }
-                if (($c === $delimiter) && (($e === 2) || ($e === 0 && strlen($current_field) > 0))) {
-                    $fields[] = $current_field;
-                    $current_field = "";
-                    $e = 0;
-                    continue;
-                }
-                if ($e === 2)
-                    throw new IOException("Error in CSV data format. Delimiter not found after enclosure.");
-                $current_field .= $c;
-            }
-
-            $fields[] = $current_field;
-
-            return $fields;
         }
 
         /**
