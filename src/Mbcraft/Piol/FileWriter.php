@@ -13,7 +13,7 @@ namespace Mbcraft\Piol {
      * 
      * To obtain a FileWriter for a given file use the File::openWriter() instance method.
      */
-    class FileWriter extends FileReader {
+    class FileWriter extends FileReader implements IWriter {
 
         /**
          * Constant for carriage return.
@@ -178,53 +178,6 @@ namespace Mbcraft\Piol {
                 return $result;
             } else throw new IOException("FileWriter my_handle is empty");
 
-        }
-
-        /**
-         * 
-         * Writes a line into this file following the CSV (comma separated values) file convention.
-         * 
-         * @param array $values the ordered array of values to write.
-         * @param string $delimiter the one string character to use as a delimiter.
-         * @param string $enclosure the one string character to use as an enclosure.
-         * @param string $escape the one string character to use as an escape character.
-         * 
-         * @return int the fwrite result code
-         * 
-         * @throws \Mbcraft\Piol\IOException if this writer is already closed.
-         * 
-         * @api
-         */
-        public function writeCSV($values, $delimiter = ",", $enclosure='"', $escape='\\') {
-            if (!empty($this->my_handle)) {
-                $this->checkChar($delimiter, "The delimiter is not a valid character.");
-                $this->checkChar($enclosure, "The enclosure is not a valid character.");
-                $this->checkChar($escape, "The escape is not a valid character.");
-
-                $this->checkNotClosed();
-
-                $final_string = "";
-
-                foreach ($values as $v) {
-
-                    if (is_string($v)) {
-                        $st_value = "" . $v;
-                        $st_value = str_replace($escape, $escape . $escape, $st_value);
-                        $v_final = str_replace($enclosure, $escape . $enclosure, $st_value);
-                    } else {
-                        $v_final = $v;
-                    }
-                    $final_string .= $enclosure;
-                    $final_string .= $v_final;
-                    $final_string .= $enclosure . $delimiter;
-                }
-
-                $result = $this->writeln(substr($final_string, 0, strlen($final_string) - 1));
-
-                $this->updateActualMaxSize();
-
-                return $result;
-            } else throw new IOException("FileWriter my_handle is empty");
         }
 
         /**
