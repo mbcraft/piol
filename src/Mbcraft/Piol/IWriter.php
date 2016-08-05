@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * This file contains the IWriter interface.
+ */
 namespace Mbcraft\Piol {
 
     /**

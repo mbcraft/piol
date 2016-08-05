@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * This file contains the IReader interface.
+ */
 namespace Mbcraft\Piol {
 
     /**
