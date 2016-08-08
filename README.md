@@ -78,7 +78,8 @@ Useful features like rename, delete, move files and directories, directory visit
 and set (Linux only) and much more.
 - Zip creation and extraction (zip library required inside php) with ZipUtils class.
 - Properties management in ini and java xml formats.
-- Csv reader and writer.
+- Csv utility class for reading and writing csv data.
+- StringBuffer class, for working with character streams.
 - Secure storage management : store files inside a protected directory.
     Save data as string, properties or xml.
 - Upload handler : easy handle file uploads with UploadUtils class, even multiple file uploads are
@@ -106,6 +107,7 @@ Current version : 2.1.0
 - Add openWriter($erase) parameter.
 - Added CsvUtils class
 - Added IReader and IWriter interfaces
+- Added StringBuffer class
 
 ## Roadmap :
 
