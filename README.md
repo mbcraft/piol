@@ -94,7 +94,7 @@ with your favorite browser.
 
 ## Info :
 
-Current version : 2.1.0
+Current version : 2.2.0
 
 ## Latest changes :
 
