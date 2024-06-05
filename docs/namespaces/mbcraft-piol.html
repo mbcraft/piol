@@ -61,7 +61,7 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/mbcraft-piol.html" class="">Piol</a>
+                <a href="namespaces/mbcraft-piol.html" class="-active">Piol</a>
                 
             </li>
             </ul>
@@ -105,160 +105,75 @@
             <div class="phpdocumentor-column -nine phpdocumentor-content">
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mbcraft.html">Mbcraft</a></li>
     </ul>
 
     <article class="phpdocumentor-element -namespace">
-        <h2 class="phpdocumentor-content__title">API Documentation</h2>
+        <h2 class="phpdocumentor-content__title">Piol</h2>
 
         
 <h3 id="toc">
     Table of Contents
-    <a href="namespaces/default.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="namespaces/mbcraft-piol.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 <h4 id="namespaces">
     Namespaces
-    <a href="namespaces/default.html#namespaces" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="namespaces/mbcraft-piol.html#namespaces" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/mbcraft.html"><abbr title="\Mbcraft">Mbcraft</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/mbcraft-piol-cache.html"><abbr title="\Mbcraft\Piol\Cache">Cache</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/mbcraft-piol-storagedrivers.html"><abbr title="\Mbcraft\Piol\StorageDrivers">StorageDrivers</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/mbcraft-piol-utils.html"><abbr title="\Mbcraft\Piol\Utils">Utils</abbr></a></dt>
     </dl>
 
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="namespaces/mbcraft-piol.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Mbcraft-Piol-IReader.html"><abbr title="\Mbcraft\Piol\IReader">IReader</abbr></a></dt><dd>Interface IReader</dd>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Mbcraft-Piol-IWriter.html"><abbr title="\Mbcraft\Piol\IWriter">IWriter</abbr></a></dt><dd>Interface IWriter</dd>    </dl>
+
+    <h4 id="toc-classes">
+        Classes
+        <a href="namespaces/mbcraft-piol.html#toc-classes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-Dir.html"><abbr title="\Mbcraft\Piol\Dir">Dir</abbr></a></dt><dd>This class enable you to easily work with directories. It contains a lot of easy to use methods
+for dealing with directories and its content (file listing) as well as methods for copying, moving
+and deleting content, as well as methods for checking parent and ancestor dirs.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-File.html"><abbr title="\Mbcraft\Piol\File">File</abbr></a></dt><dd>This class enable you to work with files, providing a lot of easy-to-use methods
+for dealing with name, extension, temporary files, content and content hashing,
+as well as methods for moving, renaming and copying the file around.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-FileReader.html"><abbr title="\Mbcraft\Piol\FileReader">FileReader</abbr></a></dt><dd>This class enables you to easily read data from files, providing methods
+for reading characters, plain string lines or CSV data, and a scanf like method.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-FileSystemUtils.html"><abbr title="\Mbcraft\Piol\FileSystemUtils">FileSystemUtils</abbr></a></dt><dd>This class contains various file system utility static methods : checking for total
+and available disk space, file name validation and file and directory identification.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-FileWriter.html"><abbr title="\Mbcraft\Piol\FileWriter">FileWriter</abbr></a></dt><dd>This class is used to write inside a file. It extends FileReader and provides
+additional write operations. It has support for write, writeln, printf and writing
+CSV lines.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-IOException.html"><abbr title="\Mbcraft\Piol\IOException">IOException</abbr></a></dt><dd>This class is used as exception class inside the Piol library.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-PiolObject.html"><abbr title="\Mbcraft\Piol\PiolObject">PiolObject</abbr></a></dt><dd>This class is used to give meaningful errors to user who mistype method calls on
+Piol library classes.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-Storage.html"><abbr title="\Mbcraft\Piol\Storage">Storage</abbr></a></dt><dd>This abstract class models a protected storage inside a storage folder.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-StorageFactory.html"><abbr title="\Mbcraft\Piol\StorageFactory">StorageFactory</abbr></a></dt><dd>This class is a factory for obtaining Storage subclasses and managing secure protected
+storage. The protected storage is a secure folder (where secure means it has a random name
+and can&#039;t be guessed on the web) that contains all storage data. Actually it uses a 2 level
+categorization strategy for saving all storage files. By default the storage root is in the &#039;/include/storage/&#039;
+folder. It is possible to configure the storage root using the methods :
+- getStorageRoot()
+- setStorageRoot()
+- storageRootExists()</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-StringBuffer.html"><abbr title="\Mbcraft\Piol\StringBuffer">StringBuffer</abbr></a></dt><dd>Class StringBuffer</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-Upload.html"><abbr title="\Mbcraft\Piol\Upload">Upload</abbr></a></dt><dd>This class models a single file upload. It contains method for saving the uploaded file
+to a target file or directory, and for obtaining information about the uploaded file as well
+as the upload status.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-UploadUtils.html"><abbr title="\Mbcraft\Piol\UploadUtils">UploadUtils</abbr></a></dt><dd>Helper class for file uploads. It has only static methods, and it&#039;s useful for obtaining
+Upload instances. It&#039;s useful for managing file uploads.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-ZipUtils.html"><abbr title="\Mbcraft\Piol\ZipUtils">ZipUtils</abbr></a></dt><dd>This class provides utilities methods for extracting and compressing files
+using the php &#039;zip&#039; extension. It has only static methods.</dd>    </dl>
 
 
 
-
-<h4 id="toc-constants">
-    Constants
-    <a href="namespaces/default.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/default.html#constant_DOT">DOT</a>
-    <span>
-        &nbsp;= &quot;.&quot;                            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/default.html#constant_DS">DS</a>
-    <span>
-        &nbsp;= &quot;/&quot;                            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/default.html#constant_PIOL_ROOT_PATH">PIOL_ROOT_PATH</a>
-    <span>
-        &nbsp;= $piol_root_path                            </span>
-</dt>
-
-    </dl>
 
 
 
 
 
         
-    <section class="phpdocumentor-constants">
-        <h3 class="phpdocumentor-elements__header" id="constants">
-            Constants
-            <a href="namespaces/default.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_DOT">
-        DOT
-        <a href="namespaces/default.html#constant_DOT" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Mbcraft/Piol/__FileSystemElement.php"><a href="files/src-mbcraft-piol-filesystemelement.html"><abbr title="src/Mbcraft/Piol/__FileSystemElement.php">__FileSystemElement.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">14</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">DOT</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;.&quot;</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_DS">
-        DS
-        <a href="namespaces/default.html#constant_DS" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Mbcraft/Piol/__FileSystemElement.php"><a href="files/src-mbcraft-piol-filesystemelement.html"><abbr title="src/Mbcraft/Piol/__FileSystemElement.php">__FileSystemElement.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">11</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">DS</span>
-    = <span class="phpdocumentor-signature__default-value">&quot;/&quot;</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_PIOL_ROOT_PATH">
-        PIOL_ROOT_PATH
-        <a href="namespaces/default.html#constant_PIOL_ROOT_PATH" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Mbcraft/Piol/FileSystemUtils.php"><a href="files/src-mbcraft-piol-filesystemutils.html"><abbr title="src/Mbcraft/Piol/FileSystemUtils.php">FileSystemUtils.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">75</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">PIOL_ROOT_PATH</span>
-    = <span class="phpdocumentor-signature__default-value">$piol_root_path</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-            </section>
 
         
         <div class="phpdocumentor-modal" id="source-view">
@@ -364,18 +279,11 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                                                                                                <li><a href="namespaces/default.html#toc-constants">Constants</a></li>
-                                                        </ul>
+                                                                                <li><a href="namespaces/mbcraft-piol.html#toc-interfaces">Interfaces</a></li>
+                                                            <li><a href="namespaces/mbcraft-piol.html#toc-classes">Classes</a></li>
+                                                                                                                    </ul>
             </li>
 
-                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="namespaces/default.html#constant_DOT">DOT</a></li>
-                                                    <li><a href="namespaces/default.html#constant_DS">DS</a></li>
-                                                    <li><a href="namespaces/default.html#constant_PIOL_ROOT_PATH">PIOL_ROOT_PATH</a></li>
-                                            </ul>
-                </li>
             
                     </ul>
     </section>
@@ -394,7 +302,7 @@
     </section>
 </section>
         </div>
-        <a href="namespaces/default.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="namespaces/mbcraft-piol.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

@@ -70,7 +70,7 @@
                 <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Application.html" class="">Application</a>
+    <a href="packages/Application.html" class="-active">Application</a>
 </h4>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -107,33 +107,66 @@
                                         <ul class="phpdocumentor-breadcrumbs">
     </ul>
 
-    <article class="phpdocumentor-element -namespace">
-        <h2 class="phpdocumentor-content__title">API Documentation</h2>
+    <article class="phpdocumentor-element -package">
+        <h2 class="phpdocumentor-content__title">Application</h2>
 
         
 <h3 id="toc">
     Table of Contents
-    <a href="namespaces/default.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="packages/Application.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
-<h4 id="namespaces">
-    Namespaces
-    <a href="namespaces/default.html#namespaces" class="headerlink"><i class="fas fa-link"></i></a>
 
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/mbcraft.html"><abbr title="\Mbcraft">Mbcraft</abbr></a></dt>
-    </dl>
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="packages/Application.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
 
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Mbcraft-Piol-Cache-ICache.html"><abbr title="\Mbcraft\Piol\Cache\ICache">ICache</abbr></a></dt><dd>This is the common interface used for caches. Actually there is only one implementation of it,
+the FlatDirCache class.</dd>    </dl>
 
+    <h4 id="toc-classes">
+        Classes
+        <a href="packages/Application.html#toc-classes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-Cache-FlatDirCache.html"><abbr title="\Mbcraft\Piol\Cache\FlatDirCache">FlatDirCache</abbr></a></dt><dd>This class can be used for caching data in a flat folder fashion.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-Dir.html"><abbr title="\Mbcraft\Piol\Dir">Dir</abbr></a></dt><dd>This class enable you to easily work with directories. It contains a lot of easy to use methods
+for dealing with directories and its content (file listing) as well as methods for copying, moving
+and deleting content, as well as methods for checking parent and ancestor dirs.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-File.html"><abbr title="\Mbcraft\Piol\File">File</abbr></a></dt><dd>This class enable you to work with files, providing a lot of easy-to-use methods
+for dealing with name, extension, temporary files, content and content hashing,
+as well as methods for moving, renaming and copying the file around.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-FileReader.html"><abbr title="\Mbcraft\Piol\FileReader">FileReader</abbr></a></dt><dd>This class enables you to easily read data from files, providing methods
+for reading characters, plain string lines or CSV data, and a scanf like method.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-FileSystemUtils.html"><abbr title="\Mbcraft\Piol\FileSystemUtils">FileSystemUtils</abbr></a></dt><dd>This class contains various file system utility static methods : checking for total
+and available disk space, file name validation and file and directory identification.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-FileWriter.html"><abbr title="\Mbcraft\Piol\FileWriter">FileWriter</abbr></a></dt><dd>This class is used to write inside a file. It extends FileReader and provides
+additional write operations. It has support for write, writeln, printf and writing
+CSV lines.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-IOException.html"><abbr title="\Mbcraft\Piol\IOException">IOException</abbr></a></dt><dd>This class is used as exception class inside the Piol library.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-PiolObject.html"><abbr title="\Mbcraft\Piol\PiolObject">PiolObject</abbr></a></dt><dd>This class is used to give meaningful errors to user who mistype method calls on
+Piol library classes.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-Storage.html"><abbr title="\Mbcraft\Piol\Storage">Storage</abbr></a></dt><dd>This abstract class models a protected storage inside a storage folder.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-StorageDrivers-DataStorage.html"><abbr title="\Mbcraft\Piol\StorageDrivers\DataStorage">DataStorage</abbr></a></dt><dd>This class contains operations available only for data storages : reading and writing
+all the data from the storage.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-StorageDrivers-PropertiesStorage.html"><abbr title="\Mbcraft\Piol\StorageDrivers\PropertiesStorage">PropertiesStorage</abbr></a></dt><dd>This class contains methods available only for properties storage.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-StorageDrivers-XMLStorage.html"><abbr title="\Mbcraft\Piol\StorageDrivers\XMLStorage">XMLStorage</abbr></a></dt><dd>This class contains operations available only for XML storages : reading and writing the
+whole xml content. It uses the SimpleXMLElement class for its operations.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-StorageFactory.html"><abbr title="\Mbcraft\Piol\StorageFactory">StorageFactory</abbr></a></dt><dd>This class is a factory for obtaining Storage subclasses and managing secure protected
+storage. The protected storage is a secure folder (where secure means it has a random name
+and can&#039;t be guessed on the web) that contains all storage data. Actually it uses a 2 level
+categorization strategy for saving all storage files. By default the storage root is in the &#039;/include/storage/&#039;
+folder. It is possible to configure the storage root using the methods :
+- getStorageRoot()
+- setStorageRoot()
+- storageRootExists()</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-Upload.html"><abbr title="\Mbcraft\Piol\Upload">Upload</abbr></a></dt><dd>This class models a single file upload. It contains method for saving the uploaded file
+to a target file or directory, and for obtaining information about the uploaded file as well
+as the upload status.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-UploadUtils.html"><abbr title="\Mbcraft\Piol\UploadUtils">UploadUtils</abbr></a></dt><dd>Helper class for file uploads. It has only static methods, and it&#039;s useful for obtaining
+Upload instances. It&#039;s useful for managing file uploads.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-Utils-IniPropertiesUtils.html"><abbr title="\Mbcraft\Piol\Utils\IniPropertiesUtils">IniPropertiesUtils</abbr></a></dt><dd>This class contains helper methods for dealing with properties file. It actually contains
+some basic string and file ini operations :
+- read and write properties to file
+- read and write properties to string
+- add and remove properties from a file</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-Utils-JavaXmlPropertiesUtils.html"><abbr title="\Mbcraft\Piol\Utils\JavaXmlPropertiesUtils">JavaXmlPropertiesUtils</abbr></a></dt><dd>This class has static methods for handling java xml properties.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mbcraft-Piol-ZipUtils.html"><abbr title="\Mbcraft\Piol\ZipUtils">ZipUtils</abbr></a></dt><dd>This class provides utilities methods for extracting and compressing files
+using the php &#039;zip&#039; extension. It has only static methods.</dd>    </dl>
 
 
 
 <h4 id="toc-constants">
     Constants
-    <a href="namespaces/default.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="packages/Application.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
@@ -165,7 +198,7 @@
     <section class="phpdocumentor-constants">
         <h3 class="phpdocumentor-elements__header" id="constants">
             Constants
-            <a href="namespaces/default.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="packages/Application.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article class="phpdocumentor-element -constant -public ">
@@ -364,7 +397,9 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                                                                                                <li><a href="namespaces/default.html#toc-constants">Constants</a></li>
+                                                                                    <li><a href="packages/Application.html#toc-interfaces">Interfaces</a></li>
+                                                                <li><a href="packages/Application.html#toc-classes">Classes</a></li>
+                                                                                                        <li><a href="packages/Application.html#toc-constants">Constants</a></li>
                                                         </ul>
             </li>
 
@@ -394,7 +429,7 @@
     </section>
 </section>
         </div>
-        <a href="namespaces/default.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="packages/Application.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
